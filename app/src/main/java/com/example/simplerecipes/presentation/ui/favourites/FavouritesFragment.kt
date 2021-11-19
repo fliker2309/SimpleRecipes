@@ -29,14 +29,14 @@ class FavouritesFragment : Fragment() {
 
         _binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+/*
         val textView: TextView = binding.textNotifications
         favouritesViewModel.text.observe(
             viewLifecycleOwner,
             Observer {
                 textView.text = it
             }
-        )
+        )*/
         return root
     }
 

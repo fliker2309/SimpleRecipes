@@ -12,6 +12,7 @@ import com.example.simplerecipes.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
+
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
 
@@ -41,4 +42,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
