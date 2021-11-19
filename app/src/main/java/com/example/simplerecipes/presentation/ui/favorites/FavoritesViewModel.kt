@@ -1,10 +1,10 @@
-package com.example.simplerecipes.presentation.ui.favourites
+package com.example.simplerecipes.presentation.ui.favorites
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class FavouritesViewModel : ViewModel() {
+class FavoritesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is favourites Fragment"

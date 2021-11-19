@@ -42,7 +42,7 @@
         android:background="@drawable/heart_background"
         android:padding="5dp"
         app:tint="@color/colorAccent"
-        android:src="@drawable/ic_favourites"
+        android:src="@drawable/ic_favorites"
         app:layout_constraintEnd_toEndOf="@id/cardView"
         app:layout_constraintTop_toTopOf="@id/cardView"/>
 

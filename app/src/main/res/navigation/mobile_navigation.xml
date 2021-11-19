@@ -15,11 +15,11 @@
         android:id="@+id/navigation_search"
         android:name="com.example.simplerecipes.presentation.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/search_bar" />
 
     <fragment
         android:id="@+id/navigation_favourites"
-        android:name="com.example.simplerecipes.presentation.ui.favourites.FavouritesFragment"
-        android:label="@string/title_favourites"
-        tools:layout="@layout/fragment_favourites" />
+        android:name="com.example.simplerecipes.presentation.ui.favorites.FavoritesFragment"
+        android:label="@string/title_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>
