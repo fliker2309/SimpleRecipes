@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.preference.PreferenceCategory
+        app:key="dark_theme"
+        app:title="Theme">
+
+        <androidx.preference.SwitchPreference
+            app:icon="@drawable/ic_dark_theme"
+            app:key="enable_dark_theme"
+            app:singleLineTitle="true"
+            app:title="Enable dark theme"/>
+
+    </androidx.preference.PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="about"
+        app:title="About application">
+
+        <androidx.preference.Preference
+            app:key="version"
+            app:title="Current version"
+            tools:summary="1.0.0"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

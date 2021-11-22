@@ -62,6 +62,7 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.8.9")
 
+    implementation("androidx.preference:preference-ktx:1.1.1")
     // images
     implementation("com.github.bumptech.glide:glide:4.12.0")
     kapt("com.github.bumptech.glide:compiler:4.12.0")

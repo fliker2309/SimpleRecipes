@@ -3,23 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigationHome">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigationHome"
         android:name="com.example.simplerecipes.presentation.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_search"
+        android:id="@+id/navigationSearch"
         android:name="com.example.simplerecipes.presentation.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/search_bar" />
 
     <fragment
-        android:id="@+id/navigation_favourites"
+        android:id="@+id/navigationFavourites"
         android:name="com.example.simplerecipes.presentation.ui.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/navigationSettings"
+        android:name="com.example.simplerecipes.presentation.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings"/>
 </navigation>
