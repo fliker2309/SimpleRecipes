@@ -9,6 +9,7 @@ import com.example.simplerecipes.R
 import com.example.simplerecipes.presentation.extentions.enableDarkTheme
 
 private const val ENABLE_DARK_THEME = "enable_dark_theme"
+private const val VERSION = "version"
 
 class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -18,6 +19,9 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
             onPreferenceChangeListener = this@SettingsFragment
             isChecked = getUiMode() == Configuration.UI_MODE_NIGHT_YES
         }
+        val context = requireContext()
+        val versionName = context.packageManager.getPackageInfo(context.packageName,0).versionName
+        findPreference<Preference>(VERSION)?.summary = versionName
     }
 
     private fun getUiMode() =
