@@ -11,5 +11,7 @@
     <string name="no_fav_hint">Use the button Search on the bottom panel to find the recipes you need</string>
     <string name="to_add_a_recipe_click">To add a recipe click</string>
     <string name="menu_ideas">Menu Ideas</string>
+    <string name="cook_today">Cook today</string>
+    <string name="categories">Categories</string>
 
 </resources>
