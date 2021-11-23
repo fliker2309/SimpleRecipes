@@ -13,5 +13,7 @@
     <string name="menu_ideas">Menu Ideas</string>
     <string name="cook_today">Cook today</string>
     <string name="categories">Categories</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="ingredients">Ingredients:</string>
 
 </resources>
