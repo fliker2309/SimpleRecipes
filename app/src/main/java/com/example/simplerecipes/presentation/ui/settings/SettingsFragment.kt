@@ -20,7 +20,7 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
             isChecked = getUiMode() == Configuration.UI_MODE_NIGHT_YES
         }
         val context = requireContext()
-        val versionName = context.packageManager.getPackageInfo(context.packageName,0).versionName
+        val versionName = context.packageManager.getPackageInfo(context.packageName, 0).versionName
         findPreference<Preference>(VERSION)?.summary = versionName
     }
 
