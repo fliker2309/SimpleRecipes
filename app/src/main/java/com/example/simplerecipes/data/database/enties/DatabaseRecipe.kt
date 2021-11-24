@@ -16,6 +16,8 @@ data class DatabaseRecipe(
     val sourceUrl: String?,
     @ColumnInfo(name = "image_url")
     val imageUrl: String,
+    val readyInMinutes: Int?,
+    val servings: Int?,
     val summary: String?
 )
 

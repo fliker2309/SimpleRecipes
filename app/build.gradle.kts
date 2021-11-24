@@ -6,6 +6,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
 }
+
 android {
     compileSdk = 31
 
@@ -67,6 +68,13 @@ dependencies {
     // dependency injection
     implementation("com.google.dagger:hilt-android:2.38.1")
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+
+    //network
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
     implementation("com.google.code.gson:gson:2.8.9")
 
