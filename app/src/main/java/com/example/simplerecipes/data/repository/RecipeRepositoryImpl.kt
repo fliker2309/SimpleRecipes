@@ -5,7 +5,7 @@ import com.example.simplerecipes.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
 
 class RecipeRepositoryImpl : RecipeRepository {
-    override suspend fun searchRecipes(
+    override suspend fun getRecipesList(
         query: String,
         addRecipeInformation: Boolean,
         number: Int,
@@ -14,19 +14,19 @@ class RecipeRepositoryImpl : RecipeRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun requestRecipeDetails(id: Int): Recipe {
+    override suspend fun getRecipeDetails(id: Int): Recipe {
         TODO("Not yet implemented")
     }
 
-    override fun requestFavoriteRecipes(): Flow<List<Recipe>> {
+    override fun getFavoriteRecipes(): Flow<List<Recipe>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun saveFavouriteRecipe(recipe: Recipe) {
+    override suspend fun saveFavoriteRecipe(recipe: Recipe) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteFavouriteRecipe(recipe: Recipe) {
+    override suspend fun deleteFavoriteRecipe(recipe: Recipe) {
         TODO("Not yet implemented")
     }
 }

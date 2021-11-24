@@ -5,18 +5,29 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecipeRepository {
 
-    suspend fun searchRecipes(
+    suspend fun getRecipesList(
         query: String,
         addRecipeInformation: Boolean,
         number: Int,
         offset: Int
     ): List<Recipe>
 
-    suspend fun requestRecipeDetails(id: Int): Recipe
+    suspend fun getRecipesByIngredient(
+        addRecipeInformation: Boolean,
+        number: Int,
+        offset: Int,
+        options: Map<String, String>
+    ): List<Recipe>
 
-    fun requestFavoriteRecipes(): Flow<List<Recipe>>
+    suspend fun getRecipeDetails(id: Int): Recipe
 
-    suspend fun saveFavouriteRecipe(recipe: Recipe)
+    suspend fun getRandomRecipe(): Recipe
 
-    suspend fun deleteFavouriteRecipe(recipe: Recipe)
+    fun getFavoriteRecipes(): Flow<List<Recipe>>
+
+    fun getFavoriteRecipeById(id: Int): Flow<Recipe?>
+
+    suspend fun saveFavoriteRecipe(recipe: Recipe)
+
+    suspend fun deleteFavoriteRecipe(recipe: Recipe)
 }

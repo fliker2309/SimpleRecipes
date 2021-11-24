@@ -1,5 +1,8 @@
 plugins {
     id("com.android.application")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.4.21"
     kotlin("android")
     kotlin("kapt")
 }
@@ -48,13 +51,18 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("androidx.work:work-runtime-ktx:2.7.1")
 
-// Livecycle
+    // Livecycle
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+
+    // room
+    implementation("androidx.room:room-runtime:2.3.0")
+    kapt("androidx.room:room-compiler:2.3.0")
+    implementation("androidx.room:room-ktx:2.3.0")
 
     // dependency injection
     implementation("com.google.dagger:hilt-android:2.38.1")

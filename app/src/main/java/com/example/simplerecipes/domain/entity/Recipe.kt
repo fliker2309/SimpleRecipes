@@ -9,7 +9,6 @@ data class Recipe(
     val readyInMinutes: Int?,
     val servings: Int?,
     val summary: String?,
-    val score: Float?,
     val instructions: List<Instruction>?,
     val ingredients: List<Ingredient>?
 )
@@ -23,6 +22,5 @@ data class Ingredient(
     val id: Int,
     val name: String,
     val original: String,
-    val amount: Float,
     val unit: String
 )

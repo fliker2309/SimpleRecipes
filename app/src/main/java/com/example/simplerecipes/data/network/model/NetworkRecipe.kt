@@ -12,8 +12,6 @@ data class NetworkRecipe(
     val readyInMinutes: Int?,
     val servings: Int?,
     val summary: String?,
-    @SerializedName("spoonacularScore")
-    val score: Float?,
     @SerializedName("analyzedInstructions")
     val instructions: List<NetworkInstructions>?,
     @SerializedName("extendedIngredients")
@@ -41,6 +39,5 @@ data class NetworkIngredient(
     val id: Int,
     val name: String,
     val original: String,
-    val amount: Float,
     val unit: String
 )
