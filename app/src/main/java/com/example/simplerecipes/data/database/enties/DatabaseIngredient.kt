@@ -11,5 +11,6 @@ data class DatabaseIngredient(
     @ColumnInfo(name = "recipe_id")
     val recipeId: Int,
     val name: String,
-    val original: String
+    val original: String,
+    val unit: String
 )
