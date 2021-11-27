@@ -50,9 +50,14 @@ fun NetworkRecipe.toDomainModel(): Recipe {
     var ingredients = listOf<Ingredient>()
 
     if (this.instructions?.isNotEmpty() == true) {
-        ingredients = this.ingredients?.map {
+        instructions = this.instructions.first().steps.map {
             it.toDomainModel()
-        } ?: emptyList()
+        }
+    }
+    if (this.ingredients?.isNotEmpty() == true) {
+        ingredients = this.ingredients.map {
+            it.toDomainModel()
+        }
     }
 
     return Recipe(

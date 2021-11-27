@@ -71,20 +71,4 @@
         app:layout_constraintTop_toTopOf="@id/cardView"
        />
 
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:checked="false"
-        android:enabled="false"
-        android:minWidth="28dp"
-        android:minHeight="28dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/cardView"
-        app:layout_constraintTop_toTopOf="@id/cardView"
-        app:useMaterialThemeColors="false"
-        tools:visibility="visible"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

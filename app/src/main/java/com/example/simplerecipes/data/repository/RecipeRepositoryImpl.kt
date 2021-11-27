@@ -2,9 +2,11 @@ package com.example.simplerecipes.data.repository
 
 import android.util.Log
 import com.example.simplerecipes.data.database.dao.RecipeDao
+import com.example.simplerecipes.data.database.enties.toDomainModel
 import com.example.simplerecipes.data.network.RecipeService
 import com.example.simplerecipes.data.network.model.toDomainModel
 import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.entity.toDatabaseModel
 import com.example.simplerecipes.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -75,20 +77,30 @@ class RecipeRepositoryImpl @Inject constructor(
     }
 
     override fun getFavoriteRecipes(): Flow<List<Recipe>> {
-        return recipeDao.getRecipesWithInformation().map { dbRecipe->
+        return recipeDao.getRecipesWithInformation().map { dbRecipe ->
             dbRecipe.map { it.toDomainModel() }
         }
     }
 
     override fun getFavoriteRecipeById(id: Int): Flow<Recipe?> {
-        TODO("Not yet implemented")
+        return recipeDao.getRecipeByID(id).map { it?.toDomainModel() }
     }
 
     override suspend fun saveFavoriteRecipe(recipe: Recipe) {
-        TODO("Not yet implemented")
+        val model = recipe.toDatabaseModel()
+        recipeDao.insertRecipe(
+            recipe = model.recipe,
+            ingredients = model.ingredients,
+            instructions = model.instructions
+        )
     }
 
     override suspend fun deleteFavoriteRecipe(recipe: Recipe) {
-        TODO("Not yet implemented")
+        val model = recipe.toDatabaseModel()
+        recipeDao.deleteRecipe(
+            recipe = model.recipe,
+            ingredients = model.ingredients,
+            instructions = model.instructions
+        )
     }
 }

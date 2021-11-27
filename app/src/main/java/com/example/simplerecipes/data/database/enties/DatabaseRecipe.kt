@@ -44,7 +44,7 @@ fun DatabaseRecipeInformation.toDomainModel(): Recipe {
         title = recipe.title,
         sourceName = recipe.sourceName,
         imageUrl = recipe.imageUrl,
-        sourceUrl= recipe.sourceUrl,
+        sourceUrl = recipe.sourceUrl,
         readyInMinutes = recipe.readyInMinutes,
         servings = recipe.servings,
         summary = recipe.summary,
