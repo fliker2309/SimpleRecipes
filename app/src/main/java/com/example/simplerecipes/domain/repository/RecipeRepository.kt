@@ -21,8 +21,6 @@ interface RecipeRepository {
 
     suspend fun getRecipeDetails(id: Int): Recipe
 
-    suspend fun getRandomRecipe(): Recipe
-
     fun getFavoriteRecipes(): Flow<List<Recipe>>
 
     fun getFavoriteRecipeById(id: Int): Flow<Recipe?>

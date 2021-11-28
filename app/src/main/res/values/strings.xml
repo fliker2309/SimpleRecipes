@@ -15,5 +15,8 @@
     <string name="categories">Categories</string>
     <string name="breakfast">Breakfast</string>
     <string name="ingredients">Ingredients:</string>
+    <string name="unknown">Unknown</string>
+    <string name="minutes_label">%1$d min</string>
+    <string name="by_source">by %1$s</string>
 
 </resources>

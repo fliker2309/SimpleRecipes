@@ -60,20 +60,6 @@
             style="@style/titleTextView"
             android:layout_width="match_parent"
             android:layout_marginTop="15dp"
-            android:text="@string/cook_today" />
-
-        <include
-            android:id="@+id/cvCookToday"
-            layout="@layout/view_favorite_recipe"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp" />
-
-        <TextView
-            style="@style/titleTextView"
-            android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
             android:text="@string/categories" />
 
         <HorizontalScrollView

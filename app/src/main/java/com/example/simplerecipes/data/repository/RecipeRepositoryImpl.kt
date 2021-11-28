@@ -72,10 +72,6 @@ class RecipeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getRandomRecipe(): Recipe {
-        TODO("Not yet implemented")
-    }
-
     override fun getFavoriteRecipes(): Flow<List<Recipe>> {
         return recipeDao.getRecipesWithInformation().map { dbRecipe ->
             dbRecipe.map { it.toDomainModel() }
