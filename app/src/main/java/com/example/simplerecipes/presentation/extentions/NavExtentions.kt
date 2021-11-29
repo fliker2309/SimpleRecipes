@@ -9,7 +9,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.simplerecipes.R
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.ui.detail.RecipeDetailViewModel
-import com.example.simplerecipes.presentation.ui.search.SearchFragment
+import com.example.simplerecipes.presentation.ui.search.SearchFragmentDirections
 
 fun Fragment.findNavController(): NavController {
     return Navigation.findNavController(
@@ -25,10 +25,11 @@ fun Fragment.navigateToRecipeDetail(
 ) {
     val viewModel by activityViewModels<RecipeDetailViewModel>()
     val extras = FragmentNavigatorExtras(view to recipe.id.toString())
-    if(isFavorite){
+    if (isFavorite) {
         viewModel.presentRecipeDetails(recipe)
     } else {
         viewModel.getRecipeDetails(recipe.id)
     }
-  /*  val action = SearchFragmentDirections*/
+    val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(recipe.id.toString())
+    findNavController().navigate(action, extras)
 }

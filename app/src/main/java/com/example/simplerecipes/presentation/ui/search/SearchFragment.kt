@@ -1,6 +1,7 @@
 package com.example.simplerecipes.presentation.ui.search
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simplerecipes.databinding.FragmentSearchBinding
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.dispatchers.RecipeEventDispatcher
+import com.example.simplerecipes.presentation.extentions.navigateToRecipeDetail
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipePagingAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment(), RecipeEventDispatcher {
 
     private val viewModel: SearchViewModel by viewModels()
@@ -40,6 +44,7 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
         pagingAdapter = RecipePagingAdapter(this)
         binding.foundedRecipesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.foundedRecipesRecyclerView.adapter = pagingAdapter
+        setupListeners()
     }
 
     override fun onDestroyView() {
@@ -49,15 +54,28 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
 
     private fun requestSearch(shouldRetry: Boolean = false) {
         val text = binding.txtRecipeSearch.text.toString()
-        if(text.trim().isNotEmpty() || shouldRetry){
+        if (text.trim().isNotEmpty() || shouldRetry) {
             viewModel.query = text
             pagingAdapter.refresh()
         }
     }
 
+    private fun setupListeners() {
+        with(binding) {
+            txtRecipeSearch.setOnKeyListener { v, keyCode, event ->
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                    dismissKeyboard(v)
+                    requestSearch()
+                    return@setOnKeyListener true
+                }
+                false
+            }
+        }
+    }
+
     override fun onRecipePressed(recipe: Recipe, view: View) {
         dismissKeyboard(view)
-
+        navigateToRecipeDetail(recipe, view)
     }
 
     private fun dismissKeyboard(view: View) {

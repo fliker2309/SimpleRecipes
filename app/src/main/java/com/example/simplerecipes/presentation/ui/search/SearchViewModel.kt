@@ -9,11 +9,13 @@ import androidx.paging.cachedIn
 import com.example.simplerecipes.data.network.RecipeService
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.domain.repository.SearchPagingSource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 private const val DEFAULT_PAGE_SIZE = 10
 
+@HiltViewModel
 class SearchViewModel @Inject constructor(
     private val service: RecipeService
 ) : ViewModel() {
