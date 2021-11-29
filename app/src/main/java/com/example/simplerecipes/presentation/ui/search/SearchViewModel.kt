@@ -1,13 +1,35 @@
 package com.example.simplerecipes.presentation.ui.search
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.simplerecipes.data.network.RecipeService
+import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.repository.SearchPagingSource
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class SearchViewModel : ViewModel() {
+private const val DEFAULT_PAGE_SIZE = 10
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is search Fragment"
+class SearchViewModel @Inject constructor(
+    private val service: RecipeService
+) : ViewModel() {
+
+    val recipesFlow: Flow<PagingData<Recipe>>
+    var query = ""
+
+    init {
+        recipesFlow = Pager(
+            config = PagingConfig(DEFAULT_PAGE_SIZE),
+            pagingSourceFactory = ::createPagingSource
+        ).flow
+            .cachedIn(viewModelScope)
     }
-    val text: LiveData<String> = _text
+
+    private fun createPagingSource(): SearchPagingSource {
+        return SearchPagingSource(service, query)
+    }
 }

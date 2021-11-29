@@ -1,11 +1,11 @@
 plugins {
     id("com.android.application")
-    id("kotlin-parcelize")
-    id("androidx.navigation.safeargs")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.4.21"
     kotlin("android")
-    kotlin("kapt")
+    id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.4.21"
+    kotlin("kapt")
 }
 
 android {
