@@ -3,41 +3,43 @@ package com.example.simplerecipes.data.network.model
 import com.example.simplerecipes.domain.entity.Ingredient
 import com.example.simplerecipes.domain.entity.Instruction
 import com.example.simplerecipes.domain.entity.Recipe
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class NetworkRecipe(
     val id: Int,
     val title: String,
     val sourceName: String?,
     val sourceUrl: String?,
-    @SerializedName("image")
+    @SerialName("image")
     val imageUrl: String?,
     val readyInMinutes: Int?,
     val servings: Int?,
     val summary: String?,
-    @SerializedName("analyzedInstructions")
+    @SerialName("analyzedInstructions")
     val instructions: List<NetworkInstructions>?,
-    @SerializedName("extendedIngredients")
-    val ingredients: List<NetworkIngredient>?
+    @SerialName("Ingredients")
+    val ingredients: List<NetworkIngredient>? = null
 )
-
+@Serializable
 data class NetworkInstructions(
     val steps: List<NetworkStep>
 )
-
+@Serializable
 data class NetworkStep(
     val number: Int,
     val step: String,
     val ingredients: List<NetworkRecipeElement>,
     val equipment: List<NetworkRecipeElement>
 )
-
+@Serializable
 data class NetworkRecipeElement(
     val id: Int,
     val name: String,
     val image: String
 )
-
+@Serializable
 data class NetworkIngredient(
     val id: Int,
     val name: String,

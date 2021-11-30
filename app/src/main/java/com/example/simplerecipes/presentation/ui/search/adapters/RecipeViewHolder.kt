@@ -27,7 +27,7 @@ class RecipeViewHolder(
     fun bind(recipe: Recipe) {
         val defaultAuthor = itemView.context.getString(R.string.unknown)
         with(binding) {
-            textName.text = recipe.title
+            tvName.text = recipe.title
             textAuthor.text = itemView.context.getString(
                 R.string.by_source,
                 recipe.sourceName ?: defaultAuthor

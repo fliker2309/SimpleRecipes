@@ -1,14 +1,16 @@
 package com.example.simplerecipes.data.network.model
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class RecipeSearchResponse(
-    @SerializedName("results")
+    @SerialName("results")
     val results: List<NetworkRecipe>,
-    @SerializedName("offset")
+    @SerialName("offset")
     val offset: Int,
-    @SerializedName("number")
+    @SerialName("number")
     val number: Int,
-    @SerializedName("totalResults")
+    @SerialName("totalResults")
     val totalResults: Int
 )

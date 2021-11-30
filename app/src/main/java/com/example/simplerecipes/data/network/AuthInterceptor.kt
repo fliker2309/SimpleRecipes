@@ -1,3 +1,4 @@
+/*
 package com.example.simplerecipes.data.network
 
 import okhttp3.Interceptor
@@ -19,3 +20,4 @@ class AuthInterceptor : Interceptor {
         return chain.proceed(request)
     }
 }
+*/
