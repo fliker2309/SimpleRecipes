@@ -9,15 +9,18 @@ import com.example.simplerecipes.R
 import com.example.simplerecipes.databinding.ViewRecipeBinding
 import com.example.simplerecipes.domain.entity.Recipe
 
-class RecipeViewHolder(private val binding: ViewRecipeBinding) :
+class RecipeViewHolder(
+    private val binding: ViewRecipeBinding,
+    private val eventDispatcher: RecipeEventDispatcher
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     companion object {
-        fun create(parent: ViewGroup): RecipeViewHolder {
+        fun create(parent: ViewGroup, eventDispatcher: RecipeEventDispatcher): RecipeViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val view = inflater.inflate(R.layout.view_recipe, parent, false)
             val binding = ViewRecipeBinding.bind(view)
-            return RecipeViewHolder(binding)
+            return RecipeViewHolder(binding, eventDispatcher)
         }
     }
 
@@ -36,6 +39,9 @@ class RecipeViewHolder(private val binding: ViewRecipeBinding) :
             ivRecipe.load(recipe.imageUrl) {
                 placeholder(R.drawable.ic_food_placeholder)
                 error(R.drawable.ic_error)
+            }
+            cardRecipe.setOnClickListener {
+                eventDispatcher.onRecipePressed(recipe, recipeContainer)
             }
         }
     }

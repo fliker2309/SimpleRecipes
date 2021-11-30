@@ -14,14 +14,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simplerecipes.databinding.FragmentSearchBinding
 import com.example.simplerecipes.domain.entity.Recipe
-import com.example.simplerecipes.presentation.extentions.navigateToRecipeDetail
+import com.example.simplerecipes.presentation.ui.search.adapters.RecipeEventDispatcher
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), RecipeEventDispatcher {
 
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var pagingAdapter: RecipePagingAdapter
@@ -44,12 +44,11 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pagingAdapter = RecipePagingAdapter {
-            val action =
-                SearchFragmentDirections.actionSearchFragmentToDetailFragment(it.id.toString())
-            this.findNavController().navigate(action)
-        }
-        binding.foundedRecipesRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
+        pagingAdapter = RecipePagingAdapter(this)
+
+
+        binding.foundedRecipesRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.foundedRecipesRecyclerView.adapter = pagingAdapter
         setupListeners()
     }
@@ -85,13 +84,15 @@ class SearchFragment : Fragment() {
         }
     }
 
-
-
     private fun dismissKeyboard(view: View) {
         val inputMethodManager = ContextCompat.getSystemService(
             requireContext(), InputMethodManager::class.java
         )
         view.clearFocus()
         inputMethodManager?.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    override fun onRecipePressed(recipe: Recipe, view: View) {
+        TODO("Not yet implemented")
     }
 }

@@ -1,3 +1,4 @@
+/*
 package com.example.simplerecipes.presentation.extentions
 
 import android.util.Log
@@ -32,9 +33,12 @@ fun Fragment.navigateToRecipeDetail(
         viewModel.presentRecipeDetails(recipe)
     } else {
         viewModel.presentRecipeDetails(recipe)
-      /*  viewModel.getRecipeDetails(recipe.id)*/
+      */
+/*  viewModel.getRecipeDetails(recipe.id)*//*
+
     }
     val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(recipe.id.toString())
     Log.d(TAG, "Click on the ${recipe.id} recipe")
     findNavController().navigate(action, extras)
 }
+*/
