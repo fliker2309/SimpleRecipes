@@ -1,4 +1,4 @@
-package com.example.simplerecipes.domain.repository
+package com.example.simplerecipes.data.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

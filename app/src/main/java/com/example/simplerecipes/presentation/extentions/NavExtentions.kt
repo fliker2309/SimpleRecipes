@@ -1,5 +1,6 @@
 package com.example.simplerecipes.presentation.extentions
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -11,6 +12,8 @@ import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.ui.detail.RecipeDetailViewModel
 import com.example.simplerecipes.presentation.ui.search.SearchFragmentDirections
 
+
+private const val TAG = "myTag"
 fun Fragment.findNavController(): NavController {
     return Navigation.findNavController(
         requireActivity(),
@@ -28,8 +31,10 @@ fun Fragment.navigateToRecipeDetail(
     if (isFavorite) {
         viewModel.presentRecipeDetails(recipe)
     } else {
-        viewModel.getRecipeDetails(recipe.id)
+        viewModel.presentRecipeDetails(recipe)
+      /*  viewModel.getRecipeDetails(recipe.id)*/
     }
     val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(recipe.id.toString())
+    Log.d(TAG, "Click on the ${recipe.id} recipe")
     findNavController().navigate(action, extras)
 }

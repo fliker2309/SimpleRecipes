@@ -10,10 +10,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simplerecipes.databinding.FragmentSearchBinding
 import com.example.simplerecipes.domain.entity.Recipe
-import com.example.simplerecipes.presentation.dispatchers.RecipeEventDispatcher
 import com.example.simplerecipes.presentation.extentions.navigateToRecipeDetail
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), RecipeEventDispatcher {
+class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var pagingAdapter: RecipePagingAdapter
@@ -44,8 +44,12 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pagingAdapter = RecipePagingAdapter(this)
-        binding.foundedRecipesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        pagingAdapter = RecipePagingAdapter {
+            val action =
+                SearchFragmentDirections.actionSearchFragmentToDetailFragment(it.id.toString())
+            this.findNavController().navigate(action)
+        }
+        binding.foundedRecipesRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
         binding.foundedRecipesRecyclerView.adapter = pagingAdapter
         setupListeners()
     }
@@ -73,9 +77,6 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
                 }
                 false
             }
-            /* foundedRecipesRecyclerView.setOnScrollChangeListener { v, _, _, _, _ ->
-                 dismissKeyboard(v)
-             }*/
         }
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.recipesFlow.collectLatest { pagingData ->
@@ -84,10 +85,7 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
         }
     }
 
-    override fun onRecipePressed(recipe: Recipe, view: View) {
-        dismissKeyboard(view)
-        navigateToRecipeDetail(recipe, view)
-    }
+
 
     private fun dismissKeyboard(view: View) {
         val inputMethodManager = ContextCompat.getSystemService(

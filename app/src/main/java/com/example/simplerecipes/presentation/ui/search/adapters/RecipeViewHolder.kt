@@ -8,19 +8,16 @@ import coil.load
 import com.example.simplerecipes.R
 import com.example.simplerecipes.databinding.ViewRecipeBinding
 import com.example.simplerecipes.domain.entity.Recipe
-import com.example.simplerecipes.presentation.dispatchers.RecipeEventDispatcher
 
-class RecipeViewHolder(
-    private val binding: ViewRecipeBinding,
-    private val eventDispatcher: RecipeEventDispatcher
-) : RecyclerView.ViewHolder(binding.root) {
+class RecipeViewHolder(private val binding: ViewRecipeBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
     companion object {
-        fun create(parent: ViewGroup, eventDispatcher: RecipeEventDispatcher): RecipeViewHolder {
+        fun create(parent: ViewGroup): RecipeViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val view = inflater.inflate(R.layout.view_recipe, parent, false)
             val binding = ViewRecipeBinding.bind(view)
-            return RecipeViewHolder(binding, eventDispatcher)
+            return RecipeViewHolder(binding)
         }
     }
 
@@ -39,9 +36,6 @@ class RecipeViewHolder(
             ivRecipe.load(recipe.imageUrl) {
                 placeholder(R.drawable.ic_food_placeholder)
                 error(R.drawable.ic_error)
-            }
-            cardRecipe.setOnClickListener {
-                eventDispatcher.onRecipePressed(recipe, recipeContainer)
             }
         }
     }
