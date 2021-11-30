@@ -1,6 +1,7 @@
 package com.example.simplerecipes.presentation.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -45,8 +46,6 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pagingAdapter = RecipePagingAdapter(this)
-
-
         binding.foundedRecipesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.foundedRecipesRecyclerView.adapter = pagingAdapter
@@ -93,6 +92,9 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
     }
 
     override fun onRecipePressed(recipe: Recipe, view: View) {
-        TODO("Not yet implemented")
+        val action =
+            SearchFragmentDirections.actionSearchFragmentToDetailFragment(recipe.id.toString())
+        this.findNavController().navigate(action)
+        Log.d(TAG, "go to ${recipe.id}")
     }
 }
