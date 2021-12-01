@@ -1,15 +1,13 @@
 package com.example.simplerecipes.data.network
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-private const val API_KEY = "5848c3d19ed34458badcc7cfcc59b63f"
-//private const val API_KEY = "64ab844f43124dce87217418b8b9aded" gmail
+// private const val API_KEY = "5848c3d19ed34458badcc7cfcc59b63f"
+private const val API_KEY = "64ab844f43124dce87217418b8b9aded"
 private const val BASE_URL = "https://api.spoonacular.com"
 
 object RetrofitConfig {
@@ -40,17 +38,10 @@ object RetrofitConfig {
         return httpClient.build()
     }
 
-    private val json = Json {
-        prettyPrint = true
-        ignoreUnknownKeys = true
-    }
-
-    private val contentType = "application/json".toMediaType()
-
     private val retrofitBuilder = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(getHttpClient())
-        .addConverterFactory(json.asConverterFactory(contentType))
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     val recipeService: RecipeService = retrofitBuilder.create(RecipeService::class.java)

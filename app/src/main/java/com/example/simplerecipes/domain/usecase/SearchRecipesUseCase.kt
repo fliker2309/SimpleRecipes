@@ -24,7 +24,6 @@ class SearchRecipesUseCaseImpl @Inject constructor(
         offset: Int
     ): List<Recipe> = repository.getRecipesList(query, addRecipeInformation, number, offset)
 
-  /*  private fun createPagingSource() : SearchPagingSource{
 
-    }*/
+
 }

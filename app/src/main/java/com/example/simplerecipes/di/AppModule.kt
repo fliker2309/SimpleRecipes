@@ -2,14 +2,8 @@ package com.example.simplerecipes.di
 
 import android.content.Context
 import com.example.simplerecipes.data.database.RecipeDatabase
-import com.example.simplerecipes.data.datasource.RecipeRemoteDataSource
-import com.example.simplerecipes.data.datasource.RecipeRemoteDataSourceImpl
 import com.example.simplerecipes.data.network.RecipeService
 import com.example.simplerecipes.data.network.RetrofitConfig
-import com.example.simplerecipes.data.network.client.RecipesApiClient
-import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCase
-import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCaseImpl
-/*import com.example.simplerecipes.data.network.RetrofitConfig*/
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +28,4 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRecipeDao(database: RecipeDatabase) = database.recipeDao()
-
-
-
 }

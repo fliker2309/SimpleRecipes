@@ -1,10 +1,13 @@
 package com.example.simplerecipes.presentation.ui.detail.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecipes.databinding.IngredientItemBinding
 import com.example.simplerecipes.domain.entity.Ingredient
+
+private const val TAG = "tag"
 
 class RecipeIngredientsAdapter :
     RecyclerView.Adapter<RecipeIngredientsAdapter.IngredientViewHolder>() {
@@ -24,6 +27,7 @@ class RecipeIngredientsAdapter :
     fun submitIngredients(newIngredients: List<Ingredient>) {
         ingredients = newIngredients
         notifyDataSetChanged()
+        Log.d(TAG, "IngredientAdaper submitData")
     }
 
     class IngredientViewHolder(private val binding: IngredientItemBinding) :
@@ -38,7 +42,10 @@ class RecipeIngredientsAdapter :
         }
 
         fun bind(ingredient: Ingredient) {
-            binding.tvIngredient.text = ingredient.name
+            with(binding) {
+                tvIngredient.text = ingredient.name
+                tvIngredientId.text = ingredient.id.toString()
+            }
         }
     }
 }

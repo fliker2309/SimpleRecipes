@@ -21,4 +21,6 @@
     <string name="by_source">by %1$s</string>
     <string name="retry">retry</string>
 
+    <string name="how_to_cook">How to cook:</string>
+
 </resources>

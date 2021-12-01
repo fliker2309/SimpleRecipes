@@ -1,12 +1,16 @@
 package com.example.simplerecipes.presentation.ui.detail.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecipes.databinding.StepItemBinding
 import com.example.simplerecipes.domain.entity.Instruction
 
-class RecipeStepsAdapter : RecyclerView.Adapter<RecipeStepsAdapter.StepsViewHolder>() {
+private const val TAG = "tag"
+
+class RecipeStepsAdapter :
+    RecyclerView.Adapter<RecipeStepsAdapter.StepsViewHolder>() {
 
     var steps: List<Instruction> = listOf()
 
@@ -23,6 +27,7 @@ class RecipeStepsAdapter : RecyclerView.Adapter<RecipeStepsAdapter.StepsViewHold
     fun submitSteps(newSteps: List<Instruction>) {
         steps = newSteps
         notifyDataSetChanged()
+        Log.d(TAG, "StepAdaper submitData")
     }
 
     class StepsViewHolder(private val binding: StepItemBinding) :

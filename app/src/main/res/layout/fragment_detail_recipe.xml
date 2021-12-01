@@ -34,8 +34,8 @@
 
         <ImageButton
             android:id="@+id/btnLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:background="@color/transparent"
             android:src="@drawable/ic_like" />
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ingredients:" />
+            android:text="@string/ingredients" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvIngredients"
@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="How to cook:" />
+            android:text="@string/how_to_cook" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSteps"

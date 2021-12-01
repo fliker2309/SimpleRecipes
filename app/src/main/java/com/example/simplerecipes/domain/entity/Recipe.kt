@@ -12,7 +12,6 @@ data class Recipe(
     val sourceUrl: String?,
     val imageUrl: String,
     val readyInMinutes: Int?,
-    val servings: Int?,
     val summary: String?,
     val instructions: List<Instruction>?,
     val ingredients: List<Ingredient>?
@@ -39,7 +38,6 @@ fun Recipe.toDatabaseModel(): DatabaseRecipeInformation {
         sourceUrl = sourceUrl,
         imageUrl = imageUrl,
         readyInMinutes = readyInMinutes,
-        servings = servings,
         summary = summary
     )
 
@@ -65,6 +63,6 @@ fun Recipe.toDatabaseModel(): DatabaseRecipeInformation {
     return DatabaseRecipeInformation(
         recipe = dbRecipe,
         ingredients = dbIngredients ?: listOf(),
-        instructions = dbInstructions ?: listOf()
+        instructions = dbInstructions ?: listOf(),
     )
 }

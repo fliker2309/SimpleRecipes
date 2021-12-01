@@ -20,7 +20,6 @@ data class DatabaseRecipe(
     @ColumnInfo(name = "image_url")
     val imageUrl: String,
     val readyInMinutes: Int?,
-    val servings: Int?,
     val summary: String?
 )
 
@@ -46,7 +45,6 @@ fun DatabaseRecipeInformation.toDomainModel(): Recipe {
         imageUrl = recipe.imageUrl,
         sourceUrl = recipe.sourceUrl,
         readyInMinutes = recipe.readyInMinutes,
-        servings = recipe.servings,
         summary = recipe.summary,
         ingredients = ingredients.map { it.toDomainModel() },
         instructions = instructions.map { it.toDomainModel() }

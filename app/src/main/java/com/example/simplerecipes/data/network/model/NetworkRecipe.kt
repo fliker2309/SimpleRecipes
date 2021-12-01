@@ -3,48 +3,45 @@ package com.example.simplerecipes.data.network.model
 import com.example.simplerecipes.domain.entity.Ingredient
 import com.example.simplerecipes.domain.entity.Instruction
 import com.example.simplerecipes.domain.entity.Recipe
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class NetworkRecipe(
     val id: Int,
-    val title: String,
     val sourceName: String?,
-    val sourceUrl: String?,
-    @SerialName("image")
-    val imageUrl: String?,
+    val title: String,
     val readyInMinutes: Int?,
-    val servings: Int?,
+    val sourceUrl: String?,
+    @SerializedName("image")
+    val imageUrl: String?,
     val summary: String?,
-    @SerialName("analyzedInstructions")
+    @SerializedName("analyzedInstructions")
     val instructions: List<NetworkInstructions>?,
-    @SerialName("Ingredients")
-    val ingredients: List<NetworkIngredient>? = null
+    @SerializedName("ingredients")
+    val ingredients: List<NetworkIngredient>
 )
-@Serializable
+
 data class NetworkInstructions(
     val steps: List<NetworkStep>
 )
-@Serializable
+
+data class NetworkIngredient(
+    val id: Int,
+    val name: String,
+    val original: String,
+    val unit: String
+)
+
 data class NetworkStep(
     val number: Int,
     val step: String,
     val ingredients: List<NetworkRecipeElement>,
     val equipment: List<NetworkRecipeElement>
 )
-@Serializable
+
 data class NetworkRecipeElement(
     val id: Int,
     val name: String,
     val image: String
-)
-@Serializable
-data class NetworkIngredient(
-    val id: Int,
-    val name: String,
-    val original: String,
-    val unit: String
 )
 
 fun NetworkRecipe.toDomainModel(): Recipe {
@@ -69,7 +66,6 @@ fun NetworkRecipe.toDomainModel(): Recipe {
         sourceUrl = sourceUrl,
         imageUrl = imageUrl ?: "https://spoonacular.com/recipeImages/654959-312x231.jpg",
         readyInMinutes = readyInMinutes,
-        servings = servings,
         summary = summary,
         instructions = instructions,
         ingredients = ingredients
