@@ -8,26 +8,39 @@ import com.example.simplerecipes.domain.entity.Instruction
 
 class RecipeStepsAdapter : RecyclerView.Adapter<RecipeStepsAdapter.StepsViewHolder>() {
 
-    var steps: List<Instruction> = emptyList()
-        set(newValue) {
-            field = newValue
-        }
+    var steps: List<Instruction> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepsViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = StepItemBinding.inflate(inflater, parent, false)
-        return StepsViewHolder(binding)
+        return StepsViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: StepsViewHolder, position: Int) {
-        val step = steps[position]
-        with(holder.binding) {
-            tvNumber.text = step.number.toString()
-            tvStep.text = step.step
-        }
+        holder.bind(steps[position])
     }
 
     override fun getItemCount(): Int = steps.size
 
-    class StepsViewHolder(val binding: StepItemBinding) : RecyclerView.ViewHolder(binding.root)
+    fun submitSteps(newSteps: List<Instruction>) {
+        steps = newSteps
+        notifyDataSetChanged()
+    }
+
+    class StepsViewHolder(private val binding: StepItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        companion object {
+            fun from(parent: ViewGroup): StepsViewHolder {
+                val inflater = LayoutInflater.from(parent.context)
+                val binding = StepItemBinding.inflate(inflater, parent, false)
+                return StepsViewHolder(binding)
+            }
+        }
+
+        fun bind(step: Instruction) {
+            with(binding) {
+                tvNumber.text = step.number.toString()
+                tvStep.text = step.step
+            }
+        }
+    }
 }

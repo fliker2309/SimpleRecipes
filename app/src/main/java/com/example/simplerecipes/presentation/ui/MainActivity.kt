@@ -1,6 +1,7 @@
 package com.example.simplerecipes.presentation.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -22,9 +23,16 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.bottomNav
 
         val navController = findNavController(R.id.navHostFragmentActivityMain)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.      
 
         navView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> navView.visibility = View.VISIBLE
+                R.id.searchFragment -> navView.visibility = View.VISIBLE
+                R.id.favoritesFragment -> navView.visibility = View.VISIBLE
+                R.id.settingsFragment -> navView.visibility = View.VISIBLE
+                else -> navView.visibility = View.GONE
+            }
+        }
     }
 }
