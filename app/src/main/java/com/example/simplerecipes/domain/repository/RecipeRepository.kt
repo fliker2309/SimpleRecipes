@@ -1,5 +1,6 @@
 package com.example.simplerecipes.domain.repository
 
+import com.example.simplerecipes.data.network.model.RecipeSearchResponse
 import com.example.simplerecipes.domain.entity.Recipe
 import kotlinx.coroutines.flow.Flow
 
@@ -19,7 +20,14 @@ interface RecipeRepository {
         options: Map<String, String>
     ): List<Recipe>
 
-    suspend fun getRecipeDetails(id: Int): Recipe
+    suspend fun getRecipesResponce(
+        query: String,
+        addRecipeInformation: Boolean,
+        number: Int,
+        offset: Int
+    ): RecipeSearchResponse
+
+    suspend fun getRecipeDetails(recipeId: Int): Recipe
 
     fun getFavoriteRecipes(): Flow<List<Recipe>>
 

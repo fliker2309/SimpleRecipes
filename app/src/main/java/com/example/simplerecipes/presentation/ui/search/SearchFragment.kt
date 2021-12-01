@@ -1,7 +1,6 @@
 package com.example.simplerecipes.presentation.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -29,10 +28,6 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
     private var _binding: FragmentSearchBinding? = null
     private val binding
         get() = requireNotNull(_binding)
-
-    companion object {
-        const val TAG = "SearchFragment"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -95,6 +90,5 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
         val action =
             SearchFragmentDirections.actionSearchFragmentToDetailFragment(recipe.id.toString())
         this.findNavController().navigate(action)
-        Log.d(TAG, "go to ${recipe.id}")
     }
 }

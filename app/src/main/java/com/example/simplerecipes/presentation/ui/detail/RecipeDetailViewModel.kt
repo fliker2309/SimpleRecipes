@@ -1,16 +1,18 @@
 package com.example.simplerecipes.presentation.ui.detail
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.simplerecipes.domain.entity.Recipe
-import com.example.simplerecipes.domain.repository.RecipeRepository
+import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RecipeDetailViewModel @Inject constructor(
-    private val repository: RecipeRepository
+    private val getRecipeDetailsUseCase: GetRecipeDetailsUseCase
 ) : ViewModel() {
     private val _recipe = MutableLiveData<Recipe>()
     val recipe: LiveData<Recipe>
@@ -20,7 +22,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     fun getRecipeDetails(id: Int) {
         viewModelScope.launch {
-            val details = repository.getRecipeDetails(id)
+            val details = getRecipeDetailsUseCase.getRecipeDetails(id)
             _recipe.value = details
         }
     }
@@ -29,15 +31,15 @@ class RecipeDetailViewModel @Inject constructor(
         _recipe.value = recipe
     }
 
-    fun saveOrDeleteRecipe() {
-        if (isFavorite) {
-            deleteFavoriteRecipe()
-        } else {
-            saveFavoriteRecipe()
-        }
-    }
+    /* fun saveOrDeleteRecipe() {
+         if (isFavorite) {
+             deleteFavoriteRecipe()
+         } else {
+             saveFavoriteRecipe()
+         }
+     }*/
 
-    fun isFavorite(id: Int): LiveData<Boolean> {
+   /* fun isFavorite(id: Int): LiveData<Boolean> {
         return repository.getFavoriteRecipeById(id).map {
             isFavorite = it != null
             isFavorite
@@ -58,5 +60,5 @@ class RecipeDetailViewModel @Inject constructor(
                 repository.deleteFavoriteRecipe(it)
             }
         }
-    }
+    }*/
 }

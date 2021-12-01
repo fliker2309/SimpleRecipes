@@ -3,7 +3,9 @@ package com.example.simplerecipes.data.repository
 import android.util.Log
 import com.example.simplerecipes.data.database.dao.RecipeDao
 import com.example.simplerecipes.data.database.enties.toDomainModel
+import com.example.simplerecipes.data.datasource.RecipeRemoteDataSource
 import com.example.simplerecipes.data.network.RecipeService
+import com.example.simplerecipes.data.network.model.RecipeSearchResponse
 import com.example.simplerecipes.data.network.model.toDomainModel
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.domain.entity.toDatabaseModel
@@ -14,10 +16,12 @@ import java.io.IOException
 import javax.inject.Inject
 
 private const val TAG = "tag"
+private const val RECIPES_PER_PAGE = 10
 
 class RecipeRepositoryImpl @Inject constructor(
     private val service: RecipeService,
-    private val recipeDao: RecipeDao
+    private val recipeDao: RecipeDao,
+    private val recipeRemoteDataSource: RecipeRemoteDataSource
 ) : RecipeRepository {
     override suspend fun getRecipesList(
         query: String,
@@ -26,19 +30,19 @@ class RecipeRepositoryImpl @Inject constructor(
         offset: Int
     ): List<Recipe> {
         return try {
-            val result = service.searchRecipes(
+            val result = recipeRemoteDataSource.getRecipes(
                 query = query,
                 addRecipeInformation = addRecipeInformation,
                 number = number,
                 offset = offset
             )
-            val recipes = result.results.map { it.toDomainModel() }
+            val recipes = result.map { it.toDomainModel() }
             recipes
         } catch (e: IOException) {
             Log.d(TAG, "Recipes not received")
             emptyList()
         }
-    }
+    } //не нужна
 
     override suspend fun getRecipesByIngredient(
         addRecipeInformation: Boolean,
@@ -59,11 +63,20 @@ class RecipeRepositoryImpl @Inject constructor(
             Log.d(TAG, "Recipes not received")
             emptyList()
         }
+    }//delete later
+
+    override suspend fun getRecipesResponce(
+        query: String,
+        addRecipeInformation: Boolean,
+        number: Int,
+        offset: Int
+    ): RecipeSearchResponse {
+        TODO("Not yet implemented")
     }
 
-    override suspend fun getRecipeDetails(id: Int): Recipe {
+    override suspend fun getRecipeDetails(recipeId: Int): Recipe {
         return try {
-            val response = service.requestRecipeInformation(id)
+            val response = service.requestRecipeInformation(recipeId)
             val recipe = response.toDomainModel()
             recipe
         } catch (e: IOException) {
