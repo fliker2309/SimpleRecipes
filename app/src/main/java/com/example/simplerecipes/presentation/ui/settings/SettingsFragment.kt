@@ -10,7 +10,6 @@ import com.example.simplerecipes.presentation.extentions.enableDarkTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val ENABLE_DARK_THEME = "enable_dark_theme"
-private const val ENABLE_LIGHT_THEME = "enable_dark_theme"
 private const val VERSION = "version"
 
 @AndroidEntryPoint
