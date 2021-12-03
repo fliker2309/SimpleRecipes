@@ -12,7 +12,7 @@
     <string name="to_add_a_recipe_click">To add a recipe click</string>
     <string name="menu_ideas">Menu Ideas</string>
     <string name="cook_today">Cook today</string>
-    <string name="categories">Categories</string>
+
     <string name="breakfast">Breakfast</string>
     <string name="ingredients">Ingredients:</string>
     <string name="preparation_title">Preparation</string>
@@ -20,8 +20,9 @@
     <string name="minutes_label">%1$d min</string>
     <string name="by_source">by %1$s</string>
     <string name="retry">retry</string>
-    <string name="quotes"><font color='black'>Make your own food,and </font><font color='#f18d46'> #stayAtHome!</font></string>
+    <string name="quotes">Make your own food,and <font color='#f18d46'> #stayAtHome!</font></string>
     <string name="how_to_cook">How to cook:</string>
     <string name="hello_food_lovers">Hello, Food lovers!</string>
+    <string name="categories">Categories</string>
 
 </resources>

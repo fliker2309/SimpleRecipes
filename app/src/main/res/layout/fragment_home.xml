@@ -1,114 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
 
-    <LinearLayout
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvCategories"
+        style="@style/titleTextView"
+        android:layout_width="match_parent"
+        android:text="@string/categories"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvAdvice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_dimen"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginEnd="@dimen/small_dimen"
+        android:text="@string/quotes"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCategories" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/medium_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAdvice" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            style="@style/titleTextView"
-            android:layout_width="match_parent"
-            android:text="@string/menu_ideas" />
-
-        <HorizontalScrollView
-            android:id="@+id/hsViewMeal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <include
-                    android:id="@+id/cvBreakfast"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-                <include
-                    android:id="@+id/cvLunch"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-                <include
-                    android:id="@+id/cvDinner"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-                <include
-                    android:id="@+id/cvSupper"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <TextView
-            style="@style/titleTextView"
-            android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
-            android:text="@string/categories" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="64dp">
-
-                <include
-                    android:id="@+id/cvSalads"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-                <include
-                    android:id="@+id/cvSoups"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-                <include
-                    android:id="@+id/cvMainDishes"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-                <include
-                    android:id="@+id/cvDrinks"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-                <include
-                    android:id="@+id/cvDesserts"
-                    layout="@layout/view_favorite_recipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
-</ScrollView>
-
+</androidx.constraintlayout.widget.ConstraintLayout>

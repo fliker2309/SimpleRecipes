@@ -4,7 +4,7 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
-        android:title="@string/title_home" />
+        android:title="@string/categories" />
 
     <item
         android:id="@+id/searchFragment"
@@ -13,12 +13,11 @@
 
     <item
         android:id="@+id/favoritesFragment"
-        android:icon="@drawable/ic_favorites"
+        android:icon="@drawable/ic_like"
         android:title="@string/title_favorites" />
 
     <item
         android:id="@+id/settingsFragment"
-
         android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
 

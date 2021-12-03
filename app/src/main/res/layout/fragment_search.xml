@@ -4,33 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvTitle"
         style="@style/titleTextView"
         android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginEnd="@dimen/small_dimen"
         android:text="@string/title_search" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtRecipeSearchLayout"
         style="@style/fullWidthTextInputLayout"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginEnd="@dimen/small_dimen"
         android:hint="@string/search_bar_hint"
-        app:endIconDrawable="@drawable/ic_search"
-        app:endIconMode="custom">
+        app:endIconDrawable="@drawable/ic_close"
+        app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtRecipeSearch"
             style="@style/textInputEditText"
             android:imeOptions="actionSearch" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <Space
         android:layout_width="0dp"
         android:layout_height="40dp" />
-
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -42,8 +45,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="invisible"
-            >
+            android:visibility="gone">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="100dp"
@@ -59,12 +61,12 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
-               android:id="@+id/btnRetry"
+                android:id="@+id/btnRetry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_margin"
                 android:drawableStart="@drawable/ic_retry"
-                android:text="@string/retry"/>
+                android:text="@string/retry" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -80,7 +82,8 @@
             android:id="@+id/founded_recipes_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/view_recipe"/>
+            tools:visibility="visible"
+            tools:listitem="@layout/view_recipe" />
 
     </FrameLayout>
 
