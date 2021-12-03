@@ -20,7 +20,7 @@
     <string name="minutes_label">%1$d min</string>
     <string name="by_source">by %1$s</string>
     <string name="retry">retry</string>
-    <string name="quotes">Make your own food,and <font color='#f18d46'> #stayAtHome!</font></string>
+    <string name="quotes">Make your own food, and <font color='#f18d46'> #stayAtHome!</font></string>
     <string name="how_to_cook">How to cook:</string>
     <string name="hello_food_lovers">Hello, Food lovers!</string>
     <string name="categories">Categories</string>

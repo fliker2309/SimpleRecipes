@@ -7,10 +7,13 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.example.simplerecipes.R
 import com.example.simplerecipes.presentation.extentions.enableDarkTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val ENABLE_DARK_THEME = "enable_dark_theme"
+private const val ENABLE_LIGHT_THEME = "enable_dark_theme"
 private const val VERSION = "version"
 
+@AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
