@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.simplerecipes.presentation.ui.home.HomeFragment"
+        android:name="com.example.simplerecipes.presentation.ui.categories.CategoriesFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_categories">
         <action
             android:id="@+id/action_homeFragment_to_mealFragment"
             app:destination="@id/mealFragment" />
@@ -18,8 +18,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.simplerecipes.presentation.ui.search.SearchFragment"
-        android:label="@string/title_search"
-        tools:layout="@layout/search_bar" >
+        android:label="@string/title_search">
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -35,11 +34,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.simplerecipes.presentation.ui.settings.SettingsFragment"
         android:label="@string/settings"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/mealFragment"
         android:name="com.example.simplerecipes.presentation.ui.meallist.MealListFragment"
-        android:label="MealFragment" >
+        android:label="MealFragment">
         <action
             android:id="@+id/action_mealFragment_to_navigationHome"
             app:destination="@id/homeFragment" />
@@ -47,7 +46,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.simplerecipes.presentation.ui.detail.RecipeDetailFragment"
-        android:label="RecipeDetailFragment" >
+        android:label="RecipeDetailFragment">
         <argument
             android:name="recipeId"
             app:argType="string" />

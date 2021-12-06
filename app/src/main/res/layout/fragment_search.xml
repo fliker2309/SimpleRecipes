@@ -64,7 +64,7 @@
                 android:id="@+id/btnRetry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_dimen"
                 android:drawableStart="@drawable/ic_retry"
                 android:text="@string/retry" />
 

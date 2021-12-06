@@ -3,7 +3,6 @@ package com.example.simplerecipes.data.repository
 import android.util.Log
 import com.example.simplerecipes.data.database.dao.RecipeDao
 import com.example.simplerecipes.data.database.enties.toDomainModel
-import com.example.simplerecipes.data.datasource.RecipeRemoteDataSource
 import com.example.simplerecipes.data.network.RecipeService
 import com.example.simplerecipes.data.network.model.RecipeSearchResponse
 import com.example.simplerecipes.data.network.model.toDomainModel
@@ -16,12 +15,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 private const val TAG = "tag"
-private const val RECIPES_PER_PAGE = 10
+
 
 class RecipeRepositoryImpl @Inject constructor(
     private val service: RecipeService,
-    private val recipeDao: RecipeDao,
-    private val recipeRemoteDataSource: RecipeRemoteDataSource
+    private val recipeDao: RecipeDao
 ) : RecipeRepository {
     override suspend fun getRecipesList(
         query: String,
@@ -30,19 +28,19 @@ class RecipeRepositoryImpl @Inject constructor(
         offset: Int
     ): List<Recipe> {
         return try {
-            val result = recipeRemoteDataSource.getRecipes(
+            val result = service.searchRecipes(
                 query = query,
                 addRecipeInformation = addRecipeInformation,
                 number = number,
                 offset = offset
             )
-            val recipes = result.map { it.toDomainModel() }
+            val recipes = result.results.map { it.toDomainModel() }
             recipes
         } catch (e: IOException) {
             Log.d(TAG, "Recipes not received")
             emptyList()
         }
-    } //не нужна
+    }
 
     override suspend fun getRecipesByIngredient(
         addRecipeInformation: Boolean,
@@ -63,9 +61,9 @@ class RecipeRepositoryImpl @Inject constructor(
             Log.d(TAG, "Recipes not received")
             emptyList()
         }
-    }//delete later
+    }
 
-    override suspend fun getRecipesResponce(
+    override suspend fun getRecipesResponse(
         query: String,
         addRecipeInformation: Boolean,
         number: Int,
@@ -112,4 +110,8 @@ class RecipeRepositoryImpl @Inject constructor(
             instructions = model.instructions
         )
     }
+
+   /* override suspend fun getCategories() {
+        TODO("Not yet implemented")
+    }*/
 }

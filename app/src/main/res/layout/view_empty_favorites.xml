@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/you_havn_t_add_any_recipes_yet"
-        android:textSize="20sp" />
+        android:textSize="@dimen/large_text_size" />
 
     <TextView
         android:layout_width="match_parent"
@@ -34,9 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/to_add_a_recipe_click"
-        android:textSize="20sp"
+        android:textSize="@dimen/large_text_size"
         android:drawablePadding="2dp"
-        app:drawableRightCompat="@drawable/ic_like_empty" />
+        app:drawableRightCompat="@drawable/ic_like" />
 
 
 </LinearLayout>

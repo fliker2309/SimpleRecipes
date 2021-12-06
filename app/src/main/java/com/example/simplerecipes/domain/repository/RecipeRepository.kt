@@ -20,7 +20,7 @@ interface RecipeRepository {
         options: Map<String, String>
     ): List<Recipe>
 
-    suspend fun getRecipesResponce(
+    suspend fun getRecipesResponse(
         query: String,
         addRecipeInformation: Boolean,
         number: Int,
@@ -28,6 +28,8 @@ interface RecipeRepository {
     ): RecipeSearchResponse
 
     suspend fun getRecipeDetails(recipeId: Int): Recipe
+
+/*    suspend fun getCategories()*/
 
     fun getFavoriteRecipes(): Flow<List<Recipe>>
 

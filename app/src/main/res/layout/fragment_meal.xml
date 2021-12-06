@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
         android:text="@string/breakfast"
-        app:drawableLeftCompat="@drawable/ic_back_arrow" />
+        app:drawableLeftCompat="@drawable/ic_back" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMeal"

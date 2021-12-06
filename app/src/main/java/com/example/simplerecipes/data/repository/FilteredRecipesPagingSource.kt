@@ -7,26 +7,18 @@ import com.example.simplerecipes.data.network.model.toDomainModel
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.utils.Constants
 import retrofit2.HttpException
-import java.io.IOException
 
-class SearchPagingSource(
+class FilteredRecipesPagingSource(
     private val service: RecipeService,
-    private val query: String
+    private val options: Map<String, String>
 ) : PagingSource<Int, Recipe>() {
-    override fun getRefreshKey(state: PagingState<Int, Recipe>): Int? {
-        return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
-        }
-    }
-
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Recipe> {
-        return try {
+        try {
             val pageNumber = params.key ?: 1
             val pageSize = Constants.RECIPES_PER_PAGE
             val offset = (pageNumber - 1) * pageSize
-            val response = service.searchRecipes(
-                query = query,
+            val response = service.searchRecipesByIngredient(
+                options = options,
                 addRecipeInformation = true,
                 number = pageSize,
                 offset = offset
@@ -36,15 +28,22 @@ class SearchPagingSource(
             } else {
                 null
             }
-            LoadResult.Page(
+            return LoadResult.Page(
                 data = response.results.map { it.toDomainModel() },
                 prevKey = null,
                 nextKey = nextPageNumber
             )
-        } catch (e: IOException) {
-            return LoadResult.Error(e)
         } catch (e: HttpException) {
             return LoadResult.Error(e)
+        } catch (e: Exception) {
+            return LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, Recipe>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 }
