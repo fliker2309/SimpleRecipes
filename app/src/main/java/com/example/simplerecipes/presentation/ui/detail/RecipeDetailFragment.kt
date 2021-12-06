@@ -50,6 +50,7 @@ class RecipeDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         subscribeObservers()
     }
 
@@ -61,7 +62,8 @@ class RecipeDetailFragment : Fragment() {
     private fun initRecyclers() {
         binding.rvIngredients.apply {
             adapter = RecipeIngredientsAdapter()
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
         binding.rvSteps.apply {
             adapter = RecipeStepsAdapter()

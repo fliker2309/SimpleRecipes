@@ -1,27 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:padding="@dimen/small_dimen">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="@dimen/medium_dimen"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivCurrentRecipeDetail"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBack"
             tools:srcCompat="@drawable/ic_recipe_book" />
 
         <TextView
@@ -32,6 +47,9 @@
             android:layout_marginTop="@dimen/medium_dimen"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivCurrentRecipeDetail"
             tools:text="Draniki" />
 
         <ImageButton
@@ -42,7 +60,10 @@
             android:layout_marginTop="@dimen/medium_dimen"
             android:layout_marginBottom="@dimen/medium_dimen"
             android:background="@color/transparent"
-            android:src="@drawable/ic_like" />
+            android:src="@drawable/ic_like"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRecipeName" />
 
         <TextView
             android:id="@+id/tvAddDeleteFavorite"
@@ -50,31 +71,52 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/add_to_favorites"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLike" />
 
         <TextView
+            android:id="@+id/tvIngredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ingredients" />
+            android:text="@string/ingredients"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAddDeleteFavorite" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvIngredient"
             tools:listItem="@layout/ingredient_item" />
 
         <TextView
+            android:id="@+id/tvStep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/how_to_cook" />
+            android:text="@string/how_to_cook"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvIngredients" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStep"
             tools:listItem="@layout/step_item" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
