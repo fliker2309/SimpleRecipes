@@ -6,6 +6,7 @@
     <dimen name="text_size">18sp</dimen>
     <dimen name="large_text_size">20sp</dimen>
     <dimen name="large_dimen">24dp</dimen>
+    <dimen name="like_dimen">32dp</dimen>
     <dimen name="button_dimen">48dp</dimen>
 
 </resources>
