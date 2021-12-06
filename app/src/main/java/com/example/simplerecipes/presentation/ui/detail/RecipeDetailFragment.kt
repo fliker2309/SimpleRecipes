@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -72,8 +73,13 @@ class RecipeDetailFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
+        with(binding) {
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            btnLike.setOnClickListener {
+                viewModel.saveOrDeleteRecipe()
+            }
         }
     }
 
@@ -85,6 +91,17 @@ class RecipeDetailFragment : Fragment() {
 
     private fun showRecipeData(recipe: Recipe) {
         with(binding) {
+            viewModel.isFavorite(recipe.id).observe(
+                viewLifecycleOwner,
+                Observer { isFavorite ->
+                    btnLike.setImageResource(R.drawable.ic_like)
+                    tvAddDeleteFavorite.setText(R.string.add_to_favorites)
+                    if (isFavorite) {
+                        btnLike.setImageResource(R.drawable.ic_favorites)
+                        tvAddDeleteFavorite.setText(R.string.delete_from_favorites)
+                    }
+                }
+            )
             viewLifecycleOwner.lifecycleScope.launch {
                 ivCurrentRecipeDetail.load(recipe.imageUrl) {
                     placeholder(R.drawable.ic_food_placeholder)

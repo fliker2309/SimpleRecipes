@@ -2,9 +2,12 @@ package com.example.simplerecipes.presentation.ui.detail
 
 import androidx.lifecycle.*
 import com.example.simplerecipes.domain.entity.Recipe
-import com.example.simplerecipes.domain.usecase.*
-import com.example.simplerecipes.presentation.ui.SaveOrDeleteRecipe
+import com.example.simplerecipes.domain.usecase.DeleteFavoriteRecipeUseCase
+import com.example.simplerecipes.domain.usecase.GetFavoriteRecipeByIdUseCase
+import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCase
+import com.example.simplerecipes.domain.usecase.SaveFavoriteRecipeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,9 +16,8 @@ class RecipeDetailViewModel @Inject constructor(
     private val saveFavoriteRecipeUseCase: SaveFavoriteRecipeUseCase,
     private val deleteFavoriteRecipeUseCase: DeleteFavoriteRecipeUseCase,
     private val getRecipeDetailsUseCase: GetRecipeDetailsUseCase,
-    private val getFavoritesRecipesUseCase: GetFavoritesRecipesUseCase,
-    private val getFavoriteRecipeById: GetFavoriteRecipeByIdUseCase
-) : ViewModel()/*, SaveOrDeleteRecipe*/ {
+    private val getFavoriteRecipeByIdUseCase: GetFavoriteRecipeByIdUseCase
+) : ViewModel() {
 
     private var isFavorite = false
 
@@ -23,27 +25,24 @@ class RecipeDetailViewModel @Inject constructor(
     val recipe: LiveData<Recipe>
         get() = _recipe
 
-    private var _loadingRecipeDetails: MutableLiveData<Boolean> = MutableLiveData()
-    val loadingRecipeDetails: LiveData<Boolean>
-        get() = _loadingRecipeDetails
-
-    fun getRecipeDetailsFromDb(id: Int) {
-        getFavoriteRecipeById.getFavoriteRecipeById(id)
+    private fun getRecipeDetailsFromDb(id: Int) {
+        getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id)
     }
 
-    fun getRecipeDetailsFromNetwork(id: Int) {
+     fun getRecipeDetailsFromNetwork(id: Int) {
         viewModelScope.launch {
-            _loadingRecipeDetails.value = true
             val details = getRecipeDetailsUseCase.getRecipeDetails(id)
             _recipe.value = details
-            _loadingRecipeDetails.value = false
         }
     }
+ /*   fun presentRecipeDetails(id: Int) {
+        if (isFavorite) {
+            getRecipeDetailsFromDb(id)
+        } else {
+            getRecipeDetailsFromNetwork(id)
+        }
+    }*/
 
-    fun presentRecipeDetails(recipe: Recipe) {
-        _recipe.value = recipe
-    }
-/*
     fun saveOrDeleteRecipe() {
         if (isFavorite) {
             deleteFavoriteRecipe()
@@ -53,13 +52,13 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
     fun isFavorite(id: Int): LiveData<Boolean> {
-        return getFavoritesRecipesUseCase.getFavoriteRecipeById(id).map {
+        return getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id).map {
             isFavorite = it != null
             isFavorite
-        }.asLiveData()*/
+        }.asLiveData()
     }
 
-/*    override suspend fun saveFavoriteRecipe(recipe: Recipe) {
+    private fun saveFavoriteRecipe() {
         viewModelScope.launch {
             _recipe.value?.let {
                 saveFavoriteRecipeUseCase.saveFavoriteRecipe(it)
@@ -67,11 +66,11 @@ class RecipeDetailViewModel @Inject constructor(
         }
     }
 
-    override suspend fun deleteFavoriteRecipe(recipe: Recipe) {
+    private fun deleteFavoriteRecipe() {
         viewModelScope.launch {
             _recipe.value?.let {
                 deleteFavoriteRecipeUseCase.deleteFavoriteRecipe(it)
             }
         }
-    }*/
-/*}*/
+    }
+}

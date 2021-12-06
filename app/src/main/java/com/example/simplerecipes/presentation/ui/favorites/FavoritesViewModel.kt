@@ -18,6 +18,14 @@ class FavoritesViewModel @Inject constructor(
     val favRecipes: LiveData<List<Recipe>>
         get() = _favRecipes
 
+    private val _isSelecting = MutableLiveData(false)
+    val isSelecting: LiveData<Boolean>
+        get() = _isSelecting
+
+    fun changeSelecting(value: Boolean) {
+        _isSelecting.value = value
+    }
+
     init {
         val recipes = getFavoritesRecipesUseCase.getFavoriteRecipes().asLiveData()
     }
