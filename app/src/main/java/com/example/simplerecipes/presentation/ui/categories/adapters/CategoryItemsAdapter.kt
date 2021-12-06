@@ -1,3 +1,4 @@
+/*
 package com.example.simplerecipes.presentation.ui.categories.adapters
 
 import android.os.Parcelable
@@ -8,7 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecipes.domain.entity.Category
 import com.example.simplerecipes.presentation.ui.categories.dispatchers.CategoryEventDispatcher
 
+*/
+/*
 class CategoryItemsAdapter(private val eventDispatcher: CategoryEventDispatcher) : ListAdapter<Category, CategoriesAdapter.CategoriesViewHolder>(CategoryDiffCallback()){
+*//*
+
 
 
 
@@ -30,3 +35,4 @@ class CategoryItemsAdapter(private val eventDispatcher: CategoryEventDispatcher)
 
 
 
+*/

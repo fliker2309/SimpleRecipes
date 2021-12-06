@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@+id/homeFragment">
+    app:startDestination="@+id/categoriesFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/categoriesFragment"
         android:name="com.example.simplerecipes.presentation.ui.categories.CategoriesFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_categories">
         <action
-            android:id="@+id/action_homeFragment_to_mealFragment"
-            app:destination="@id/mealFragment" />
+            android:id="@+id/action_categoriesFragment_to_categoryDetailFragment"
+            app:destination="@id/categoryDetailsFragment" />
     </fragment>
 
     <fragment
@@ -35,13 +35,20 @@
         android:name="com.example.simplerecipes.presentation.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
+
     <fragment
-        android:id="@+id/mealFragment"
+        android:id="@+id/categoryDetailsFragment"
         android:name="com.example.simplerecipes.presentation.ui.meallist.MealListFragment"
-        android:label="MealFragment">
+        android:label="categoriesDetails">
         <action
             android:id="@+id/action_mealFragment_to_navigationHome"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/action_categoriesDetailsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.example.simplerecipes.domain.entity.CategoryItem" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"

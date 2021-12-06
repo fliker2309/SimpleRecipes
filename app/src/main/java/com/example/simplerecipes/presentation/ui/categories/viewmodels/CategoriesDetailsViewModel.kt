@@ -1,4 +1,5 @@
-package com.example.simplerecipes.presentation.ui.categories
+/*
+package com.example.simplerecipes.presentation.ui.categories.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,7 +24,10 @@ class CategoriesDetailsViewModel @Inject constructor(
 
     fun requestRecipesForCategory(){
         viewModelScope.launch {
-            val options = getCategoriesUseCase.requestRecipesForCategory()
+          */
+/*  val options = getCategoriesUseCase.requestRecipesForCategory()*//*
+
         }
     }
 }
+*/

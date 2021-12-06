@@ -1,4 +1,4 @@
-package com.example.simplerecipes.presentation.ui.categories
+package com.example.simplerecipes.presentation.ui.categories.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

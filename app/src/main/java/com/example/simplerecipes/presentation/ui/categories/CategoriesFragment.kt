@@ -5,35 +5,58 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.simplerecipes.databinding.FragmentHomeBinding
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.simplerecipes.databinding.FragmentCategoriesBinding
+import com.example.simplerecipes.domain.entity.CategoryItem
+import com.example.simplerecipes.presentation.ui.categories.adapters.CategoriesAdapter
+import com.example.simplerecipes.presentation.ui.categories.dispatchers.CategoryEventDispatcher
+import com.example.simplerecipes.presentation.ui.categories.viewmodels.CategoriesViewModel
 
-class CategoriesFragment : Fragment() {
+class CategoriesFragment : Fragment(), CategoryEventDispatcher {
 
+    private var _binding: FragmentCategoriesBinding? = null
+    private val binding
+        get() = requireNotNull(_binding)
 
-    private lateinit var categoriesDetailsViewModel: CategoriesDetailsViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var adapter: CategoriesAdapter
+    private val viewModel: CategoriesViewModel by viewModels()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter = CategoriesAdapter(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        categoriesDetailsViewModel =
-            ViewModelProvider(this).get(CategoriesDetailsViewModel::class.java)
+    ): View {
+        _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+        subscribeObservers()
+    }
 
-    /*    val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
-        return root
+    private fun initRecycler() {
+        with(binding) {
+            rvCategories.layoutManager = LinearLayoutManager(requireContext())
+            rvCategories.adapter = adapter
+        }
+    }
+
+    private fun subscribeObservers() {
+        viewModel.categories.observe(
+            viewLifecycleOwner, { categories ->
+                adapter.submitList(categories)
+            }
+        )
     }
 
     override fun onDestroyView() {
@@ -41,5 +64,10 @@ class CategoriesFragment : Fragment() {
         _binding = null
     }
 
-
+    override fun onCategoryPressed(category: CategoryItem, view: View) {
+        val extras = FragmentNavigatorExtras(view to category.name)
+        val action =
+            CategoriesFragmentDirections.actionCategoriesFragmentToCategoryDetailFragment(category)
+        findNavController().navigate(action, extras)
+    }
 }
