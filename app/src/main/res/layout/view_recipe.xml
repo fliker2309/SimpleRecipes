@@ -35,7 +35,7 @@
             android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/ivTime"
+            app:layout_constraintEnd_toStartOf="@+id/btnLike"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivRecipe"
@@ -57,29 +57,16 @@
             app:layout_constraintTop_toBottomOf="@+id/tvName"
             tools:text="by Lance Bogrol" />
 
-        <TextView
-            android:id="@+id/textTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/medium_dimen"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small_text_size"
+        <ImageView
+            android:id="@+id/btnLike"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivRecipe"
-            tools:text="25 min" />
-
-        <ImageView
-            android:id="@+id/ivTime"
-            android:layout_width="@dimen/medium_dimen"
-            android:layout_height="@dimen/medium_dimen"
-            android:layout_marginEnd="6dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textTime"
-            app:layout_constraintEnd_toStartOf="@+id/textTime"
-            app:layout_constraintTop_toTopOf="@+id/textTime"
-            app:srcCompat="@drawable/ic_time"
-            app:tint="@color/colorAccent"
-            tools:ignore="ContentDescription" />
+            app:srcCompat="@drawable/ic_like"
+            app:tint="@color/black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

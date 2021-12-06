@@ -36,4 +36,9 @@ abstract class BinderModule {
     abstract fun deleteFavoriteRecipeUseCase(
         deleteFavoriteRecipeUseCase: DeleteFavoriteRecipeUseCaseImpl
     ): DeleteFavoriteRecipeUseCase
+
+    @Binds
+    abstract fun getFavoritesRecipesUseCase(
+        getFavoritesRecipesUseCase: GetFavoritesRecipesUseCaseImpl
+    ): GetFavoritesRecipesUseCase
 }

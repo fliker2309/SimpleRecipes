@@ -24,7 +24,6 @@ class SearchViewModel @Inject constructor(
     var query = ""
 
     init {
-
         recipesFlow = Pager(
             config = PagingConfig(DEFAULT_PAGE_SIZE),
             pagingSourceFactory = ::createPagingSource
