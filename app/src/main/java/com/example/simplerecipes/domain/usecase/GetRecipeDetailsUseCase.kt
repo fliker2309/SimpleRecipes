@@ -11,5 +11,6 @@ interface GetRecipeDetailsUseCase {
 class GetRecipeDetailsUseCaseImpl @Inject constructor(
     private val repository: RecipeRepository
 ) : GetRecipeDetailsUseCase {
-    override suspend fun getRecipeDetails(recipeId: Int): Recipe = repository.getRecipeDetails(recipeId)
+    override suspend fun getRecipeDetails(recipeId: Int): Recipe =
+        repository.getRecipeDetails(recipeId)
 }

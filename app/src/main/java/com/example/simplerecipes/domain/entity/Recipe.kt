@@ -1,9 +1,9 @@
 package com.example.simplerecipes.domain.entity
 
-import com.example.simplerecipes.data.database.enties.DatabaseIngredient
-import com.example.simplerecipes.data.database.enties.DatabaseInstruction
-import com.example.simplerecipes.data.database.enties.DatabaseRecipe
-import com.example.simplerecipes.data.database.enties.DatabaseRecipeInformation
+import com.example.simplerecipes.data.database.entity.DatabaseIngredient
+import com.example.simplerecipes.data.database.entity.DatabaseInstruction
+import com.example.simplerecipes.data.database.entity.DatabaseRecipe
+import com.example.simplerecipes.data.database.entity.DatabaseRecipeInformation
 
 data class Recipe(
     val id: Int,

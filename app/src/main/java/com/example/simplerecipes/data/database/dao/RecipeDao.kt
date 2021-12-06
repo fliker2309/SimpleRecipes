@@ -1,10 +1,10 @@
 package com.example.simplerecipes.data.database.dao
 
-import androidx.room.*
-import com.example.simplerecipes.data.database.enties.DatabaseIngredient
-import com.example.simplerecipes.data.database.enties.DatabaseInstruction
-import com.example.simplerecipes.data.database.enties.DatabaseRecipe
-import com.example.simplerecipes.data.database.enties.DatabaseRecipeInformation
+import androidx.room.* // ktlint-disable no-wildcard-imports
+import com.example.simplerecipes.data.database.entity.DatabaseIngredient
+import com.example.simplerecipes.data.database.entity.DatabaseInstruction
+import com.example.simplerecipes.data.database.entity.DatabaseRecipe
+import com.example.simplerecipes.data.database.entity.DatabaseRecipeInformation
 import kotlinx.coroutines.flow.Flow
 
 @Dao

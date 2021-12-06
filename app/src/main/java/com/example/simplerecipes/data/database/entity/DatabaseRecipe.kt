@@ -1,6 +1,6 @@
-package com.example.simplerecipes.data.database.enties
+package com.example.simplerecipes.data.database.entity
 
-import androidx.room.*
+import androidx.room.* // ktlint-disable no-wildcard-imports
 import com.example.simplerecipes.domain.entity.Ingredient
 import com.example.simplerecipes.domain.entity.Instruction
 import com.example.simplerecipes.domain.entity.Recipe

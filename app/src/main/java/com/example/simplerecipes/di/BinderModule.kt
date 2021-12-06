@@ -2,7 +2,7 @@ package com.example.simplerecipes.di
 
 import com.example.simplerecipes.data.repository.RecipeRepositoryImpl
 import com.example.simplerecipes.domain.repository.RecipeRepository
-import com.example.simplerecipes.domain.usecase.*
+import com.example.simplerecipes.domain.usecase.* // ktlint-disable no-wildcard-imports
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,11 +26,6 @@ abstract class BinderModule {
     abstract fun searchRecipesUseCase(
         searchRecipesUseCase: SearchRecipesUseCaseImpl
     ): SearchRecipesUseCase
-
-    @Binds
-    abstract fun getCategoriesUseCase(
-        getCategoriesUseCase: GetCategoriesUseCaseImpl
-    ): GetCategoriesUseCase
 
     @Binds
     abstract fun saveFavoriteRecipeUseCase(

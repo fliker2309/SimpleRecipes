@@ -2,9 +2,8 @@ package com.example.simplerecipes.data.repository
 
 import android.util.Log
 import com.example.simplerecipes.data.database.dao.RecipeDao
-import com.example.simplerecipes.data.database.enties.toDomainModel
+import com.example.simplerecipes.data.database.entity.toDomainModel
 import com.example.simplerecipes.data.network.RecipeService
-import com.example.simplerecipes.data.network.model.RecipeSearchResponse
 import com.example.simplerecipes.data.network.model.toDomainModel
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.domain.entity.toDatabaseModel
@@ -15,7 +14,6 @@ import java.io.IOException
 import javax.inject.Inject
 
 private const val TAG = "tag"
-
 
 class RecipeRepositoryImpl @Inject constructor(
     private val service: RecipeService,
@@ -63,15 +61,6 @@ class RecipeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getRecipesResponse(
-        query: String,
-        addRecipeInformation: Boolean,
-        number: Int,
-        offset: Int
-    ): RecipeSearchResponse {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun getRecipeDetails(recipeId: Int): Recipe {
         return try {
             val response = service.requestRecipeInformation(recipeId)
@@ -110,8 +99,4 @@ class RecipeRepositoryImpl @Inject constructor(
             instructions = model.instructions
         )
     }
-
-   /* override suspend fun getCategories() {
-        TODO("Not yet implemented")
-    }*/
 }

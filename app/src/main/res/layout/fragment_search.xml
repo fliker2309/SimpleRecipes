@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <TextView
@@ -14,6 +13,15 @@
         android:layout_marginStart="@dimen/small_dimen"
         android:layout_marginEnd="@dimen/small_dimen"
         android:text="@string/title_search" />
+
+    <TextView
+        android:id="@+id/tvAdvice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginTop="@dimen/small_dimen"
+        android:text="@string/quotes"
+        android:textSize="@dimen/text_size"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtRecipeSearchLayout"
@@ -82,6 +90,7 @@
             android:id="@+id/founded_recipes_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="54dp"
             tools:visibility="visible"
             tools:listitem="@layout/view_recipe" />
 

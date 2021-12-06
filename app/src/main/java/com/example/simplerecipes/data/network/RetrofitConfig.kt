@@ -6,8 +6,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// private const val API_KEY = "5848c3d19ed34458badcc7cfcc59b63f"
-private const val API_KEY = "64ab844f43124dce87217418b8b9aded"
+private const val API_KEY = "5848c3d19ed34458badcc7cfcc59b63f"
+// private const val API_KEY = "64ab844f43124dce87217418b8b9aded"
 private const val BASE_URL = "https://api.spoonacular.com"
 private const val Categories = "https://www.themealdb.com/api/json/v1/1/categories.php"
 private const val Filter = "https://www.themealdb.com/api/json/v1/1/filter.php?c={strCategory}"
