@@ -1,13 +1,30 @@
 package com.example.simplerecipes.presentation.ui.favorites
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.usecase.DeleteFavoriteRecipeUseCase
+import com.example.simplerecipes.domain.usecase.GetFavoritesRecipesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavoritesViewModel : ViewModel() {
+@HiltViewModel
+class FavoritesViewModel @Inject constructor(
+    private val getFavoritesRecipesUseCase: GetFavoritesRecipesUseCase,
+    private val deleteFavoriteRecipeUseCase: DeleteFavoriteRecipeUseCase
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is favourites Fragment"
+    private var _favRecipes: MutableLiveData<List<Recipe>> = MutableLiveData()
+    val favRecipes: LiveData<List<Recipe>>
+        get() = _favRecipes
+
+    init {
+        val recipes = getFavoritesRecipesUseCase.getFavoriteRecipes().asLiveData()
     }
-    val text: LiveData<String> = _text
+
+    fun deleteFavoriteRecipe(recipe: Recipe) {
+        viewModelScope.launch {
+            deleteFavoriteRecipeUseCase.deleteFavoriteRecipe(recipe)
+        }
+    }
 }

@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface GetFavoritesRecipesUseCase {
-    fun getFavoriteRecipe(): Flow<List<Recipe>>
+    fun getFavoriteRecipes(): Flow<List<Recipe>>
 }
 
 class GetFavoritesRecipesUseCaseImpl @Inject constructor(
     private val repository: RecipeRepository
 ) : GetFavoritesRecipesUseCase {
-    override fun getFavoriteRecipe(): Flow<List<Recipe>> {
+    override fun getFavoriteRecipes(): Flow<List<Recipe>> {
         return repository.getFavoriteRecipes()
     }
 }

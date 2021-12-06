@@ -1,6 +1,6 @@
 package com.example.simplerecipes.domain.entity
 
-data class FavouriteRecipe(
+data class FavoriteRecipe(
     val data: Recipe,
     val isSelected: Boolean
 ) {

@@ -15,7 +15,7 @@ class RecipeIngredientsAdapter :
     var ingredients: List<Ingredient> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder {
-        return IngredientViewHolder.from(parent)
+        return IngredientViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: IngredientViewHolder, position: Int) {
@@ -34,7 +34,7 @@ class RecipeIngredientsAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
-            fun from(parent: ViewGroup): IngredientViewHolder {
+            fun create(parent: ViewGroup): IngredientViewHolder {
                 val inflater = LayoutInflater.from(parent.context)
                 val binding = IngredientItemBinding.inflate(inflater, parent, false)
                 return IngredientViewHolder(binding)

@@ -32,7 +32,7 @@ class RecipeDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         args.recipeId.let {
-            viewModel.getRecipeDetails(it.toInt())
+            viewModel.getRecipeDetailsFromNetwork(it.toInt())
         }
     }
 

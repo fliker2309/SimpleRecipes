@@ -24,5 +24,7 @@
     <string name="how_to_cook">How to cook:</string>
     <string name="hello_food_lovers">Hello, Food lovers!</string>
     <string name="categories">Categories</string>
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="delete_from_favorites">Delete from favorites</string>
 
 </resources>

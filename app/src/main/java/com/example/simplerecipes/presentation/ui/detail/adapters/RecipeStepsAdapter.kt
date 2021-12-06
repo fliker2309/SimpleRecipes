@@ -15,7 +15,7 @@ class RecipeStepsAdapter :
     var steps: List<Instruction> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepsViewHolder {
-        return StepsViewHolder.from(parent)
+        return StepsViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: StepsViewHolder, position: Int) {
@@ -34,7 +34,7 @@ class RecipeStepsAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
-            fun from(parent: ViewGroup): StepsViewHolder {
+            fun create(parent: ViewGroup): StepsViewHolder {
                 val inflater = LayoutInflater.from(parent.context)
                 val binding = StepItemBinding.inflate(inflater, parent, false)
                 return StepsViewHolder(binding)

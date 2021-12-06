@@ -1,4 +1,8 @@
+/*
 package com.example.simplerecipes.presentation.ui.favorites.adapter
 
-class FavoritesAdapter {
-}
+import android.widget.ListAdapter
+import com.example.simplerecipes.domain.entity.Recipe
+
+class FavoritesAdapter : ListAdapter<Recipe, FavoritesViewHolder>(){
+}*/

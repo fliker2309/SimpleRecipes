@@ -41,4 +41,9 @@ abstract class BinderModule {
     abstract fun getFavoritesRecipesUseCase(
         getFavoritesRecipesUseCase: GetFavoritesRecipesUseCaseImpl
     ): GetFavoritesRecipesUseCase
+
+    @Binds
+    abstract fun getFavoriteRecipeByIdUseCase(
+        getFavoriteRecipeByIdUseCase: GetFavoriteRecipeByIdUseCaseImpl
+    ): GetFavoriteRecipeByIdUseCase
 }
