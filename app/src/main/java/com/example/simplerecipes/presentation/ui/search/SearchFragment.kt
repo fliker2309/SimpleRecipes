@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -57,6 +59,10 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
         binding.foundedRecipesRecyclerView.layoutManager =
             StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         binding.foundedRecipesRecyclerView.adapter = pagingAdapter
+        pagingAdapter.addLoadStateListener { state: CombinedLoadStates ->
+            binding.foundedRecipesRecyclerView.isVisible = state.refresh != LoadState.Loading
+            binding.progressBar.isVisible = state.refresh == LoadState.Loading
+        }
     }
 
     private fun requestSearch(shouldRetry: Boolean = false) {

@@ -21,7 +21,7 @@
         android:layout_marginStart="@dimen/small_dimen"
         android:layout_marginTop="@dimen/small_dimen"
         android:text="@string/quotes"
-        android:textSize="@dimen/text_size"/>
+        android:textSize="@dimen/text_size" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtRecipeSearchLayout"
@@ -52,8 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:orientation="vertical">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="100dp"
@@ -76,23 +76,24 @@
                 android:drawableStart="@drawable/ic_retry"
                 android:text="@string/retry" />
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:indeterminateProgressStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone" />
-
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:indeterminateProgressStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="64dp"
+            android:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/founded_recipes_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="54dp"
-            tools:visibility="visible"
-            tools:listitem="@layout/view_recipe" />
+            tools:listitem="@layout/view_recipe"
+            tools:visibility="invisible" />
 
     </FrameLayout>
 

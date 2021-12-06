@@ -37,6 +37,8 @@ class RecipeViewHolder(
             ivRecipe.load(recipe.imageUrl) {
                 placeholder(R.drawable.ic_food_placeholder)
                 error(R.drawable.ic_error)
+                crossfade(true)
+                crossfade(1000)
             }
             cardRecipe.setOnClickListener {
                 eventDispatcher.onRecipePressed(recipe, recipeContainer)
