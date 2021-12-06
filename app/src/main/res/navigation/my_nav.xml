@@ -18,9 +18,9 @@
         android:id="@+id/favoritesFragment"
         android:name="com.example.simplerecipes.presentation.ui.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorites" >
+        tools:layout="@layout/fragment_favorites">
         <action
-            android:id="@+id/action_favoritesFragment_to_detailFragment2"
+            android:id="@+id/action_favoritesFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
 

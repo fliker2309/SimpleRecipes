@@ -64,8 +64,7 @@
             android:layout_marginBottom="@dimen/medium_dimen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_like"
-            app:tint="@color/black" />
+            app:srcCompat="@drawable/ic_favorites" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

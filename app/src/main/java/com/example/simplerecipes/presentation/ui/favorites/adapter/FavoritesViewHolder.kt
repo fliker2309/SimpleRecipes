@@ -2,6 +2,7 @@ package com.example.simplerecipes.presentation.ui.favorites.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -28,6 +29,7 @@ class FavoritesViewHolder(
         val defaultAuthor = itemView.context.getString(R.string.unknown)
         with(binding) {
             tvName.text = recipe.title
+            btnLike.isVisible = true
             textAuthor.text = itemView.context.getString(
                 R.string.by_source,
                 recipe.sourceName ?: defaultAuthor

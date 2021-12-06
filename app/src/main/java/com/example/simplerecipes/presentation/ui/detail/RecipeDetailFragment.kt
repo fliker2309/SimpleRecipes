@@ -17,10 +17,11 @@ import com.example.simplerecipes.databinding.FragmentDetailRecipeBinding
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeIngredientsAdapter
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeStepsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 private const val TAG = "recipeDetailsTag"
-
+@AndroidEntryPoint
 class RecipeDetailFragment : Fragment() {
 
     private val viewModel: RecipeDetailViewModel by activityViewModels()
