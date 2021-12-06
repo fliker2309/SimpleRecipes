@@ -32,10 +32,6 @@ class RecipeViewHolder(
                 R.string.by_source,
                 recipe.sourceName ?: defaultAuthor
             )
-            textTime.text = itemView.context.getString(
-                R.string.minutes_label,
-                recipe.readyInMinutes ?: 0
-            )
             ivRecipe.load(recipe.imageUrl) {
                 placeholder(R.drawable.ic_food_placeholder)
                 error(R.drawable.ic_error)

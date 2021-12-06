@@ -18,12 +18,18 @@ class RecipeDetailViewModel @Inject constructor(
     val recipe: LiveData<Recipe>
         get() = _recipe
 
+    private var _loadingRecipeDetails: MutableLiveData<Boolean> = MutableLiveData()
+    val loadingRecipeDetails: LiveData<Boolean>
+        get() = _loadingRecipeDetails
+
     private var isFavorite = false
 
     fun getRecipeDetails(id: Int) {
         viewModelScope.launch {
+            _loadingRecipeDetails.value = true
             val details = getRecipeDetailsUseCase.getRecipeDetails(id)
             _recipe.value = details
+            _loadingRecipeDetails.value = false
         }
     }
 
@@ -39,26 +45,26 @@ class RecipeDetailViewModel @Inject constructor(
          }
      }*/
 
-   /* fun isFavorite(id: Int): LiveData<Boolean> {
-        return repository.getFavoriteRecipeById(id).map {
-            isFavorite = it != null
-            isFavorite
-        }.asLiveData()
-    }
+    /* fun isFavorite(id: Int): LiveData<Boolean> {
+         return repository.getFavoriteRecipeById(id).map {
+             isFavorite = it != null
+             isFavorite
+         }.asLiveData()
+     }
 
-    private fun saveFavoriteRecipe() {
-        viewModelScope.launch {
-            _recipe.value?.let {
-                repository.saveFavoriteRecipe(it)
-            }
-        }
-    }
+     private fun saveFavoriteRecipe() {
+         viewModelScope.launch {
+             _recipe.value?.let {
+                 repository.saveFavoriteRecipe(it)
+             }
+         }
+     }
 
-    private fun deleteFavoriteRecipe() {
-        viewModelScope.launch {
-            _recipe.value?.let {
-                repository.deleteFavoriteRecipe(it)
-            }
-        }
-    }*/
+     private fun deleteFavoriteRecipe() {
+         viewModelScope.launch {
+             _recipe.value?.let {
+                 repository.deleteFavoriteRecipe(it)
+             }
+         }
+     }*/
 }

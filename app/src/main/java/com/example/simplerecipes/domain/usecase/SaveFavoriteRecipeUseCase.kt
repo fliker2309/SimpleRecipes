@@ -1,4 +1,17 @@
 package com.example.simplerecipes.domain.usecase
 
-class SaveFavoriteRecipeUseCase {
+import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.repository.RecipeRepository
+import javax.inject.Inject
+
+interface SaveFavoriteRecipeUseCase {
+    suspend fun saveFavoriteRecipe(recipe: Recipe)
+}
+
+class SaveFavoriteRecipeUseCaseImpl @Inject constructor(
+    private val repository: RecipeRepository
+) : SaveFavoriteRecipeUseCase {
+    override suspend fun saveFavoriteRecipe(recipe: Recipe) {
+        repository.saveFavoriteRecipe(recipe)
+    }
 }

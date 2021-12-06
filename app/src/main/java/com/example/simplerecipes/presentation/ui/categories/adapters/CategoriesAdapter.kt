@@ -1,50 +1,45 @@
+/*
 package com.example.simplerecipes.presentation.ui.categories.adapters
 
-import android.os.Parcelable
-import android.view.View
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
-
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.example.simplerecipes.databinding.ViewCategoriesListBinding
 import com.example.simplerecipes.domain.entity.Category
 import com.example.simplerecipes.presentation.ui.categories.dispatchers.CategoryEventDispatcher
 
 class CategoriesAdapter(
-    private val eventDispatcher: CategoryEventDispatcher
-) : ListAdapter<Category, CategoriesAdapter.CategoriesViewHolder>(CategoryDiffCallback()) {
+    private val categories: List<Category>,
+    private val eventDispatcher: CategoryEventDispatcher,
+    private val context: Context
+) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
-
-    private val scrollStates = hashMapOf<String, Parcelable?>()
-
-    override fun onViewRecycled(holder: CategoriesViewHolder) {
-        super.onViewRecycled(holder)
-        val item = getItem(holder.bindingAdapterPosition)
-        val key = item.name
-        scrollStates[key] = TODO()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ViewCategoriesListBinding.inflate(inflater,parent,false)
+        return CategoryViewHolder(binding)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        holder.bind(categories[position])
     }
 
-    override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = categories.size
+
+    inner class CategoryViewHolder(
+        private val binding: ViewCategoriesListBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
 
-
-    inner class CategoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    private class CategoryDiffCallback : DiffUtil.ItemCallback<Category>() {
-        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
-            return oldItem.name == newItem.name
-        }
-
-        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
-            return oldItem == newItem
+        fun bind(category: Category) {
+            val adapter = CategoryItemsAdapter(category.items, eventDispatcher)
+            with(binding) {
+              ivCategory.load(category.)
+            }
         }
     }
-
-
 }
+*/

@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.simplerecipes.databinding.FragmentSearchBinding
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipeEventDispatcher
@@ -40,16 +42,21 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pagingAdapter = RecipePagingAdapter(this)
-        binding.foundedRecipesRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.foundedRecipesRecyclerView.adapter = pagingAdapter
+        initView()
+        initObservers()
         setupListeners()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initView() {
+        pagingAdapter = RecipePagingAdapter(this)
+        binding.foundedRecipesRecyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.foundedRecipesRecyclerView.adapter = pagingAdapter
     }
 
     private fun requestSearch(shouldRetry: Boolean = false) {
@@ -71,9 +78,19 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
                 false
             }
         }
+    }
+
+    private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.recipesFlow.collectLatest { pagingData ->
                 pagingAdapter.submitData(pagingData)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            pagingAdapter.loadStateFlow.collectLatest {
+                if (it.append is LoadState.Error) {
+                    pagingAdapter.retry()
+                }
             }
         }
     }

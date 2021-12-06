@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simplerecipes.databinding.FragmentCategoriesBinding
 import com.example.simplerecipes.domain.entity.CategoryItem
-import com.example.simplerecipes.presentation.ui.categories.adapters.CategoriesAdapter
+/*import com.example.simplerecipes.presentation.ui.categories.adapters.CategoriesAdapter*/
 import com.example.simplerecipes.presentation.ui.categories.dispatchers.CategoryEventDispatcher
 import com.example.simplerecipes.presentation.ui.categories.viewmodels.CategoriesViewModel
 
@@ -21,13 +21,13 @@ class CategoriesFragment : Fragment(), CategoryEventDispatcher {
     private val binding
         get() = requireNotNull(_binding)
 
-    private lateinit var adapter: CategoriesAdapter
+/*    private lateinit var adapter: CategoriesAdapter*/
     private val viewModel: CategoriesViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+  /*  override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter = CategoriesAdapter(this)
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,24 +40,24 @@ class CategoriesFragment : Fragment(), CategoryEventDispatcher {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecycler()
-        subscribeObservers()
+   /*     initRecycler()*/
+    /*    subscribeObservers()*/
     }
-
+/*
     private fun initRecycler() {
         with(binding) {
             rvCategories.layoutManager = LinearLayoutManager(requireContext())
             rvCategories.adapter = adapter
         }
-    }
+    }*/
 
-    private fun subscribeObservers() {
+ /*   private fun subscribeObservers() {
         viewModel.categories.observe(
             viewLifecycleOwner, { categories ->
                 adapter.submitList(categories)
             }
         )
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()
