@@ -33,8 +33,11 @@ class RecipeDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+       /* args.recipeId.let {
+            viewModel.getRecipeDetailsFromNetwork(it.toInt())//here
+        }*/
         args.recipeId.let {
-            viewModel.getRecipeDetailsFromNetwork(it.toInt())
+            viewModel.presentRecipeDetails(it.toInt())//here
         }
     }
 

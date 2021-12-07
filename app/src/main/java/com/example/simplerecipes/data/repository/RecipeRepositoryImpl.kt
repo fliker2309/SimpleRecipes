@@ -68,7 +68,7 @@ class RecipeRepositoryImpl @Inject constructor(
             recipe
         } catch (e: IOException) {
             Log.d(TAG, "Recipe detail not received,check Internet connection")
-            throw Exception("Recipe detail not received")
+            throw Exception("Recipe detail not received,check Internet connection")
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.simplerecipes.presentation.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.domain.usecase.DeleteFavoriteRecipeUseCase
@@ -7,7 +8,9 @@ import com.example.simplerecipes.domain.usecase.GetFavoriteRecipeByIdUseCase
 import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCase
 import com.example.simplerecipes.domain.usecase.SaveFavoriteRecipeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,23 +28,33 @@ class RecipeDetailViewModel @Inject constructor(
     val recipe: LiveData<Recipe>
         get() = _recipe
 
+    @ExperimentalCoroutinesApi
     private fun getRecipeDetailsFromDb(id: Int) {
-        getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id)
+        getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id).mapLatest { recipe ->
+            _recipe.value = recipe
+            Log.d("TAG", "сработало чтение из бд")
+        }
+
+        /* val details = getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id).map { recipe ->
+             _recipe.value = recipe
+         }*/
     }
 
-     fun getRecipeDetailsFromNetwork(id: Int) {
+    fun getRecipeDetailsFromNetwork(id: Int) {
         viewModelScope.launch {
             val details = getRecipeDetailsUseCase.getRecipeDetails(id)
             _recipe.value = details
         }
     }
- /*   fun presentRecipeDetails(id: Int) {
+
+    @ExperimentalCoroutinesApi
+    fun presentRecipeDetails(id: Int) {
         if (isFavorite) {
             getRecipeDetailsFromDb(id)
         } else {
             getRecipeDetailsFromNetwork(id)
         }
-    }*/
+    }
 
     fun saveOrDeleteRecipe() {
         if (isFavorite) {
