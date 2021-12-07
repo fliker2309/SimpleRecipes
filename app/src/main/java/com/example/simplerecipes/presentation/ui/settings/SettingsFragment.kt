@@ -7,9 +7,10 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.example.simplerecipes.R
 import com.example.simplerecipes.presentation.extentions.enableDarkTheme
+import com.example.simplerecipes.utils.Constants.ENABLE_DARK_THEME
 import dagger.hilt.android.AndroidEntryPoint
 
-private const val ENABLE_DARK_THEME = "enable_dark_theme"
+
 private const val VERSION = "version"
 
 @AndroidEntryPoint
