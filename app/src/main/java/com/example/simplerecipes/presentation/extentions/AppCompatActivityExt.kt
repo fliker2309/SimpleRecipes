@@ -9,6 +9,5 @@ fun enableDarkTheme(isEnabled: Boolean) {
         } else {
             AppCompatDelegate.MODE_NIGHT_NO
         }
-
     AppCompatDelegate.setDefaultNightMode(uiMode)
 }

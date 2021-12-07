@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(newBase)
-
         setUpUiMode(sharedPreferences)
     }
 
