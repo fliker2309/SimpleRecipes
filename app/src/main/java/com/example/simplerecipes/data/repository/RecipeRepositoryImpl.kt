@@ -7,12 +7,11 @@ import com.example.simplerecipes.data.mappers.toDomainModel
 import com.example.simplerecipes.data.network.RecipeService
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.domain.repository.RecipeRepository
+import com.example.simplerecipes.utils.Constants.TAG
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
-
-private const val TAG = "tag"
 
 class RecipeRepositoryImpl @Inject constructor(
     private val service: RecipeService,

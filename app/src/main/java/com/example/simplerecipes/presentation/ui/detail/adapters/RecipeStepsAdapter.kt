@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecipes.databinding.StepItemBinding
 import com.example.simplerecipes.domain.entity.Instruction
+import com.example.simplerecipes.utils.Constants.TAG
 
-private const val TAG = "tag"
 
 class RecipeStepsAdapter :
     RecyclerView.Adapter<RecipeStepsAdapter.StepsViewHolder>() {

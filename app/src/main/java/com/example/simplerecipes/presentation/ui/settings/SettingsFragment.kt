@@ -10,7 +10,6 @@ import com.example.simplerecipes.presentation.extentions.enableDarkTheme
 import com.example.simplerecipes.utils.Constants.ENABLE_DARK_THEME
 import dagger.hilt.android.AndroidEntryPoint
 
-
 private const val VERSION = "version"
 
 @AndroidEntryPoint

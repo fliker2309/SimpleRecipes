@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecipes.databinding.IngredientItemBinding
 import com.example.simplerecipes.domain.entity.Ingredient
-
-private const val TAG = "tag"
+import com.example.simplerecipes.utils.Constants.TAG
 
 class RecipeIngredientsAdapter :
     RecyclerView.Adapter<RecipeIngredientsAdapter.IngredientViewHolder>() {
@@ -27,7 +26,7 @@ class RecipeIngredientsAdapter :
     fun submitIngredients(newIngredients: List<Ingredient>) {
         ingredients = newIngredients
         notifyDataSetChanged()
-        Log.d(TAG, "IngredientAdaper submitData")
+        Log.d(TAG, "Ingredient Adaper submitData")
     }
 
     class IngredientViewHolder(private val binding: IngredientItemBinding) :

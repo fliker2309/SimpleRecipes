@@ -1,7 +1,7 @@
 package com.example.simplerecipes.presentation.ui.detail
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.* // ktlint-disable no-wildcard-imports
 import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.domain.usecase.DeleteFavoriteRecipeUseCase
 import com.example.simplerecipes.domain.usecase.GetFavoriteRecipeByIdUseCase

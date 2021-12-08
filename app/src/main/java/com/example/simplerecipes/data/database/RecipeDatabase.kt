@@ -8,8 +8,7 @@ import com.example.simplerecipes.data.database.dao.RecipeDao
 import com.example.simplerecipes.data.database.dto.DatabaseIngredient
 import com.example.simplerecipes.data.database.dto.DatabaseInstruction
 import com.example.simplerecipes.data.database.dto.DatabaseRecipe
-
-private const val DATABASE_NAME = "recipe_db"
+import com.example.simplerecipes.utils.Constants.DATABASE_NAME
 
 @Database(
     version = 1,
