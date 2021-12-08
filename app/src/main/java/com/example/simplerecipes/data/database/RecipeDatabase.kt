@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.simplerecipes.data.database.dao.RecipeDao
-import com.example.simplerecipes.data.database.entity.DatabaseIngredient
-import com.example.simplerecipes.data.database.entity.DatabaseInstruction
-import com.example.simplerecipes.data.database.entity.DatabaseRecipe
+import com.example.simplerecipes.data.database.dto.DatabaseIngredient
+import com.example.simplerecipes.data.database.dto.DatabaseInstruction
+import com.example.simplerecipes.data.database.dto.DatabaseRecipe
 
 private const val DATABASE_NAME = "recipe_db"
 

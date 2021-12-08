@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.simplerecipes.R
 import com.example.simplerecipes.databinding.ViewRecipeBinding
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Recipe
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipeEventDispatcher
 
 class FavoritesViewHolder(

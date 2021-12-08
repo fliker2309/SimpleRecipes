@@ -2,7 +2,7 @@ package com.example.simplerecipes.presentation.ui.detail
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Recipe
 import com.example.simplerecipes.domain.usecase.DeleteFavoriteRecipeUseCase
 import com.example.simplerecipes.domain.usecase.GetFavoriteRecipeByIdUseCase
 import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCase

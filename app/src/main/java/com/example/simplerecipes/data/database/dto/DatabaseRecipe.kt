@@ -1,9 +1,9 @@
-package com.example.simplerecipes.data.database.entity
+package com.example.simplerecipes.data.database.dto
 
 import androidx.room.* // ktlint-disable no-wildcard-imports
-import com.example.simplerecipes.domain.entity.Ingredient
-import com.example.simplerecipes.domain.entity.Instruction
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Ingredient
+import com.example.simplerecipes.domain.dto.Instruction
+import com.example.simplerecipes.domain.dto.Recipe
 
 @Entity(tableName = "recipes")
 data class DatabaseRecipe(

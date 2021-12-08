@@ -1,8 +1,8 @@
-package com.example.simplerecipes.data.network.model
+package com.example.simplerecipes.data.network.dto
 
-import com.example.simplerecipes.domain.entity.Ingredient
-import com.example.simplerecipes.domain.entity.Instruction
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Ingredient
+import com.example.simplerecipes.domain.dto.Instruction
+import com.example.simplerecipes.domain.dto.Recipe
 import com.google.gson.annotations.SerializedName
 
 data class NetworkRecipe(

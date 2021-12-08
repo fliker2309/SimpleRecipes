@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.simplerecipes.databinding.FragmentFavoritesBinding
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Recipe
 import com.example.simplerecipes.presentation.ui.favorites.adapter.FavoritesAdapter
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipeEventDispatcher
 import dagger.hilt.android.AndroidEntryPoint

@@ -3,7 +3,7 @@ package com.example.simplerecipes.presentation.ui.favorites
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Recipe
 import com.example.simplerecipes.domain.usecase.GetFavoriteRecipeByIdUseCase
 import com.example.simplerecipes.domain.usecase.GetFavoritesRecipesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.simplerecipes.R
 import com.example.simplerecipes.databinding.FragmentDetailRecipeBinding
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Recipe
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeIngredientsAdapter
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeStepsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 private const val TAG = "recipeDetailsTag"
+
 @AndroidEntryPoint
 class RecipeDetailFragment : Fragment() {
 
@@ -33,11 +34,11 @@ class RecipeDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       /* args.recipeId.let {
-            viewModel.getRecipeDetailsFromNetwork(it.toInt())//here
-        }*/
+        /* args.recipeId.let {
+             viewModel.getRecipeDetailsFromNetwork(it.toInt())//here
+         }*/
         args.recipeId.let {
-            viewModel.presentRecipeDetails(it.toInt())//here
+            viewModel.presentRecipeDetails(it.toInt()) // here
         }
     }
 

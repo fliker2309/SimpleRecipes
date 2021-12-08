@@ -17,7 +17,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.simplerecipes.databinding.FragmentSearchBinding
-import com.example.simplerecipes.domain.entity.Recipe
+import com.example.simplerecipes.domain.dto.Recipe
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipeEventDispatcher
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint

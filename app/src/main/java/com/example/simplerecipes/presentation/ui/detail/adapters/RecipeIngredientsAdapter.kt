@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecipes.databinding.IngredientItemBinding
-import com.example.simplerecipes.domain.entity.Ingredient
+import com.example.simplerecipes.domain.dto.Ingredient
 
 private const val TAG = "tag"
 

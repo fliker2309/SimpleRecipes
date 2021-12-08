@@ -1,4 +1,4 @@
-package com.example.simplerecipes.data.database.entity
+package com.example.simplerecipes.data.database.dto
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

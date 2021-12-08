@@ -1,7 +1,7 @@
 package com.example.simplerecipes.data.network
 
-import com.example.simplerecipes.data.network.model.NetworkRecipe
-import com.example.simplerecipes.data.network.model.RecipeSearchResponse
+import com.example.simplerecipes.data.network.dto.NetworkRecipe
+import com.example.simplerecipes.data.network.dto.RecipeSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
