@@ -3,9 +3,9 @@ package com.example.simplerecipes.data.mappers
 import com.example.simplerecipes.data.network.dto.NetworkIngredient
 import com.example.simplerecipes.data.network.dto.NetworkRecipe
 import com.example.simplerecipes.data.network.dto.NetworkStep
-import com.example.simplerecipes.domain.dto.Ingredient
-import com.example.simplerecipes.domain.dto.Instruction
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.domain.entity.Ingredient
+import com.example.simplerecipes.domain.entity.Instruction
+import com.example.simplerecipes.domain.entity.Recipe
 
 fun NetworkRecipe.toDomainModel(): Recipe {
     var instructions = listOf<Instruction>()

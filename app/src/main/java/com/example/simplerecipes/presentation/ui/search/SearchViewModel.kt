@@ -8,7 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.simplerecipes.data.network.RecipeService
 import com.example.simplerecipes.data.repository.SearchPagingSource
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.domain.entity.Recipe
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

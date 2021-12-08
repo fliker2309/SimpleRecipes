@@ -1,9 +1,8 @@
 package com.example.simplerecipes.data.database.dto
 
-import androidx.room.* // ktlint-disable no-wildcard-imports
-import com.example.simplerecipes.domain.dto.Ingredient
-import com.example.simplerecipes.domain.dto.Instruction
-import com.example.simplerecipes.domain.dto.Recipe
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "recipes")
 data class DatabaseRecipe(
@@ -22,36 +21,3 @@ data class DatabaseRecipe(
     val readyInMinutes: Int?,
     val summary: String?
 )
-
-data class DatabaseRecipeInformation(
-    @Embedded val recipe: DatabaseRecipe,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "recipe_id"
-    )
-    val instructions: List<DatabaseInstruction>,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "recipe_id"
-    )
-    val ingredients: List<DatabaseIngredient>
-)
-
-fun DatabaseRecipeInformation.toDomainModel(): Recipe {
-    return Recipe(
-        id = recipe.id,
-        title = recipe.title,
-        sourceName = recipe.sourceName,
-        imageUrl = recipe.imageUrl,
-        sourceUrl = recipe.sourceUrl,
-        readyInMinutes = recipe.readyInMinutes,
-        summary = recipe.summary,
-        ingredients = ingredients.map { it.toDomainModel() },
-        instructions = instructions.map { it.toDomainModel() }
-    )
-}
-
-fun DatabaseIngredient.toDomainModel() =
-    Ingredient(id = id, name = name, original = original, unit = unit)
-
-fun DatabaseInstruction.toDomainModel() = Instruction(number = number, step = step)

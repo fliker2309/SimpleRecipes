@@ -2,7 +2,7 @@ package com.example.simplerecipes.presentation.ui.favorites.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.ui.search.adapters.RecipeEventDispatcher
 
 class FavoritesAdapter(

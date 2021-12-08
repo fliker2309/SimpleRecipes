@@ -2,7 +2,7 @@ package com.example.simplerecipes.presentation.ui.detail
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.domain.usecase.DeleteFavoriteRecipeUseCase
 import com.example.simplerecipes.domain.usecase.GetFavoriteRecipeByIdUseCase
 import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCase
@@ -28,6 +28,10 @@ class RecipeDetailViewModel @Inject constructor(
     val recipe: LiveData<Recipe>
         get() = _recipe
 
+    private var _loading: MutableLiveData<Boolean> = MutableLiveData()
+    val loading: LiveData<Boolean>
+        get() = _loading
+
     @ExperimentalCoroutinesApi
     private fun getRecipeDetailsFromDb(id: Int) {
         getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id).mapLatest { recipe ->
@@ -42,8 +46,10 @@ class RecipeDetailViewModel @Inject constructor(
 
     fun getRecipeDetailsFromNetwork(id: Int) {
         viewModelScope.launch {
+            _loading.value = true
             val details = getRecipeDetailsUseCase.getRecipeDetails(id)
             _recipe.value = details
+            _loading.value = false
         }
     }
 

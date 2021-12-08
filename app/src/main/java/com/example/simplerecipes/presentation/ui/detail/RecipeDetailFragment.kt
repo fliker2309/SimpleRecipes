@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.simplerecipes.R
 import com.example.simplerecipes.databinding.FragmentDetailRecipeBinding
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeIngredientsAdapter
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeStepsAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,12 +35,12 @@ class RecipeDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-         args.recipeId.let {
-             viewModel.getRecipeDetailsFromNetwork(it.toInt())//here
-         }
-      /*  args.recipeId.let {
-            viewModel.presentRecipeDetails(it.toInt()) // here
-        }*/
+        args.recipeId.let {
+            viewModel.getRecipeDetailsFromNetwork(it.toInt()) // here
+        }
+        /*  args.recipeId.let {
+              viewModel.presentRecipeDetails(it.toInt()) // here
+          }*/
     }
 
     override fun onCreateView(
@@ -89,8 +90,17 @@ class RecipeDetailFragment : Fragment() {
     }
 
     private fun subscribeObservers() {
-        viewModel.recipe.observe(viewLifecycleOwner) { recipe: Recipe ->
-            showRecipeData(recipe)
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it == true) {
+                binding.detailsLayout.isVisible = false
+                binding.progressBar.isVisible = true
+            } else {
+                viewModel.recipe.observe(viewLifecycleOwner) { recipe: Recipe ->
+                    showRecipeData(recipe)
+                }
+                binding.detailsLayout.isVisible = true
+                binding.progressBar.isVisible = false
+            }
         }
     }
 

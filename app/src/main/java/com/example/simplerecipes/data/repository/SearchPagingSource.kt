@@ -2,14 +2,16 @@ package com.example.simplerecipes.data.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.simplerecipes.data.network.RecipeService
 import com.example.simplerecipes.data.mappers.toDomainModel
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.data.network.RecipeService
+
+import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.utils.Constants
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class SearchPagingSource(
+class SearchPagingSource @Inject constructor(
     private val service: RecipeService,
     private val query: String
 ) : PagingSource<Int, Recipe>() {

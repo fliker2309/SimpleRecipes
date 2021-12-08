@@ -3,7 +3,7 @@ package com.example.simplerecipes.presentation.ui.search.adapters
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.domain.entity.Recipe
 
 interface RecipeEventDispatcher {
     fun onRecipePressed(recipe: Recipe, view: View)

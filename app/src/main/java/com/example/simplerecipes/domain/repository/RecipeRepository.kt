@@ -1,6 +1,6 @@
 package com.example.simplerecipes.domain.repository
 
-import com.example.simplerecipes.domain.dto.Recipe
+import com.example.simplerecipes.domain.entity.Recipe
 import kotlinx.coroutines.flow.Flow
 
 interface RecipeRepository {
