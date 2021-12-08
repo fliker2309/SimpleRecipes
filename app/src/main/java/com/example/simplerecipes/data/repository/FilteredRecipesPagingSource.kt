@@ -2,8 +2,8 @@ package com.example.simplerecipes.data.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.simplerecipes.data.mappers.toDomainModel
 import com.example.simplerecipes.data.network.RecipeService
-import com.example.simplerecipes.data.network.dto.toDomainModel
 import com.example.simplerecipes.domain.dto.Recipe
 import com.example.simplerecipes.utils.Constants
 import retrofit2.HttpException

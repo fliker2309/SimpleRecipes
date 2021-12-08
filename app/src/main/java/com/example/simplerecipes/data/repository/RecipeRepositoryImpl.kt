@@ -4,9 +4,9 @@ import android.util.Log
 import com.example.simplerecipes.data.database.dao.RecipeDao
 import com.example.simplerecipes.data.database.dto.toDomainModel
 import com.example.simplerecipes.data.network.RecipeService
-import com.example.simplerecipes.data.network.dto.toDomainModel
+import com.example.simplerecipes.data.mappers.toDomainModel
 import com.example.simplerecipes.domain.dto.Recipe
-import com.example.simplerecipes.domain.dto.toDatabaseModel
+import com.example.simplerecipes.data.mappers.toDatabaseModel
 import com.example.simplerecipes.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

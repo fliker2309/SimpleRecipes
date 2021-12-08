@@ -14,5 +14,5 @@ data class NetworkRecipe(
     @SerializedName("analyzedInstructions")
     val instructions: List<NetworkInstructions>?,
     @SerializedName("ingredients")
-    val ingredients: List<NetworkIngredient>
+    val ingredients: List<NetworkIngredient>?
 )

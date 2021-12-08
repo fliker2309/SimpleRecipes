@@ -1,5 +1,8 @@
-package com.example.simplerecipes.data.network.dto
+package com.example.simplerecipes.data.mappers
 
+import com.example.simplerecipes.data.network.dto.NetworkIngredient
+import com.example.simplerecipes.data.network.dto.NetworkRecipe
+import com.example.simplerecipes.data.network.dto.NetworkStep
 import com.example.simplerecipes.domain.dto.Ingredient
 import com.example.simplerecipes.domain.dto.Instruction
 import com.example.simplerecipes.domain.dto.Recipe
@@ -13,7 +16,7 @@ fun NetworkRecipe.toDomainModel(): Recipe {
             it.toDomainModel()
         }
     }
-    if (this.ingredients?.isNotEmpty()) {
+    if (this.ingredients?.isNotEmpty() == true) {
         ingredients = this.ingredients.map {
             it.toDomainModel()
         }
