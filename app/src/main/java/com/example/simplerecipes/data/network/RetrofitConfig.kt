@@ -6,8 +6,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/*private const val API_KEY = "5848c3d19ed34458badcc7cfcc59b63f"*/
-private const val API_KEY = "dd32abea9ef848bb847ebbd41866aeab"
+private const val API_KEY = "5848c3d19ed34458badcc7cfcc59b63f"
+/*private const val API_KEY = "dd32abea9ef848bb847ebbd41866aeab"*/
 /* private const val API_KEY = "64ab844f43124dce87217418b8b9aded"*/
 private const val BASE_URL = "https://api.spoonacular.com"
 
