@@ -67,8 +67,7 @@ class RecipeDetailFragment : Fragment() {
     private fun initRecyclers() {
         binding.rvIngredients.apply {
             adapter = RecipeIngredientsAdapter()
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext())
         }
         binding.rvSteps.apply {
             adapter = RecipeStepsAdapter()

@@ -22,6 +22,6 @@ fun DatabaseRecipeInformation.toDomainModel(): Recipe {
 }
 
 fun DatabaseIngredient.toDomainModel() =
-    Ingredient(id = id, name = name, original = original, unit = unit)
+    Ingredient(id = id, name = name, original = original, amount = amount, unit = unit)
 
 fun DatabaseInstruction.toDomainModel() = Instruction(number = number, step = step)

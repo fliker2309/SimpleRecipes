@@ -8,7 +8,6 @@ import com.example.simplerecipes.databinding.StepItemBinding
 import com.example.simplerecipes.domain.entity.Instruction
 import com.example.simplerecipes.utils.Constants.TAG
 
-
 class RecipeStepsAdapter :
     RecyclerView.Adapter<RecipeStepsAdapter.StepsViewHolder>() {
 

@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="4dp"
     android:gravity="start"
     android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvIngredientId"
+    <ImageView
+        android:id="@+id/ivDot"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:background="@drawable/step_element_circle"
         android:gravity="center"
-        android:textSize="12sp" />
-
-    <Space
-        android:layout_width="16dp"
-        android:layout_height="0dp" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvIngredient"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_dimen"
         android:layout_weight="1"
+        android:gravity="center"
         android:textSize="14sp"
-        android:text="1 egg" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivDot"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="bazilique" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvOriginal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_dimen"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvIngredient"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="3 tablespoons" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

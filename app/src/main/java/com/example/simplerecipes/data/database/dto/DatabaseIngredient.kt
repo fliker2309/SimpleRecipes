@@ -12,5 +12,6 @@ data class DatabaseIngredient(
     val recipeId: Int,
     val name: String,
     val original: String,
+    val amount: Float,
     val unit: String
 )

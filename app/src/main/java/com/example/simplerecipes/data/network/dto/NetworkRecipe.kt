@@ -13,6 +13,6 @@ data class NetworkRecipe(
     val summary: String?,
     @SerializedName("analyzedInstructions")
     val instructions: List<NetworkInstructions>?,
-    @SerializedName("ingredients")
+    @SerializedName("extendedIngredients")
     val ingredients: List<NetworkIngredient>?
 )

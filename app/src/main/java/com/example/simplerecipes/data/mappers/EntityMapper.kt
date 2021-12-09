@@ -24,8 +24,8 @@ fun Recipe.toDatabaseModel(): DatabaseRecipeInformation {
             recipeId = id,
             name = ingredient.name,
             original = ingredient.original,
+            amount =ingredient.amount,
             unit = ingredient.unit
-
         )
     }
 

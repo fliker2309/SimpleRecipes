@@ -11,7 +11,7 @@ import com.example.simplerecipes.data.database.dto.DatabaseRecipe
 import com.example.simplerecipes.utils.Constants.DATABASE_NAME
 
 @Database(
-    version = 1,
+    version = 2,
     exportSchema = false,
     entities = [DatabaseRecipe::class, DatabaseIngredient::class, DatabaseInstruction::class]
 )
@@ -25,6 +25,8 @@ abstract class RecipeDatabase : RoomDatabase() {
             context,
             RecipeDatabase::class.java,
             DATABASE_NAME
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }

@@ -21,7 +21,10 @@ class RecipeIngredientsAdapter :
         holder.bind(ingredients[position])
     }
 
-    override fun getItemCount(): Int = ingredients.size
+    override fun getItemCount(): Int {
+        Log.d(TAG, "There are ${ingredients.size} ingredients")
+       return ingredients.size
+    }
 
     fun submitIngredients(newIngredients: List<Ingredient>) {
         ingredients = newIngredients
@@ -42,8 +45,8 @@ class RecipeIngredientsAdapter :
 
         fun bind(ingredient: Ingredient) {
             with(binding) {
-                tvIngredient.text = ingredient.name
-                tvIngredientId.text = ingredient.id.toString()
+//                tvIngredient.text = ingredient.name
+                tvOriginal.text = ingredient.original
             }
         }
     }
