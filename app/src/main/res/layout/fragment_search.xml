@@ -47,36 +47,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/layoutRecipesNotFound"
+        <include
+            android:id="@+id/errorLayout"
+            layout="@layout/view_error"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/ic_no_results" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/recipes_not_found"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRetry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_dimen"
-                android:drawableStart="@drawable/ic_retry"
-                android:text="@string/retry" />
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            tools:visibility="gone"
+         />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -85,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="64dp"
-            android:visibility="visible" />
+            tools:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/founded_recipes_recycler_view"
@@ -93,7 +71,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="54dp"
             tools:listitem="@layout/view_recipe"
-            tools:visibility="invisible" />
+            tools:visibility="visible" />
 
     </FrameLayout>
 

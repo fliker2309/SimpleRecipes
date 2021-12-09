@@ -1,11 +1,16 @@
 package com.example.simplerecipes.presentation.ui.search
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -44,9 +49,13 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
-        initObservers()
-        setupListeners()
+        if (isNetworkAvailable()) {
+            initView()
+            initObservers()
+            setupListeners()
+        } else {
+            showNoInternetUI()
+        }
     }
 
     override fun onDestroyView() {
@@ -56,12 +65,18 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
 
     private fun initView() {
         pagingAdapter = RecipePagingAdapter(this)
-        binding.foundedRecipesRecyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        binding.foundedRecipesRecyclerView.adapter = pagingAdapter
-        pagingAdapter.addLoadStateListener { state: CombinedLoadStates ->
-            binding.foundedRecipesRecyclerView.isVisible = state.refresh != LoadState.Loading
-            binding.progressBar.isVisible = state.refresh == LoadState.Loading
+        with(binding) {
+            foundedRecipesRecyclerView.isVisible = true
+            txtRecipeSearchLayout.isVisible = true
+            errorLayout.btnRetry.isVisible = false
+            errorLayout.tvErrorTitle.isVisible = false
+            foundedRecipesRecyclerView.layoutManager =
+                StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+            foundedRecipesRecyclerView.adapter = pagingAdapter
+            pagingAdapter.addLoadStateListener { state: CombinedLoadStates ->
+                binding.foundedRecipesRecyclerView.isVisible = state.refresh != LoadState.Loading
+                binding.progressBar.isVisible = state.refresh == LoadState.Loading
+            }
         }
     }
 
@@ -113,5 +128,55 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
         val action =
             SearchFragmentDirections.actionSearchFragmentToDetailFragment(recipe.id.toString())
         this.findNavController().navigate(action)
+    }
+
+    private fun showNoInternetUI() {
+        with(binding) {
+            foundedRecipesRecyclerView.isVisible = false
+            progressBar.isVisible = false
+            txtRecipeSearchLayout.isVisible = false
+            errorLayout.btnRetry.isVisible = true
+            errorLayout.tvErrorTitle.isVisible = true
+
+            errorLayout.btnRetry.setOnClickListener {
+                if (isNetworkAvailable()) {
+                    initView()
+                    initObservers()
+                    setupListeners()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "No Internet connection",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val context = requireContext()
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                        return true
+                    }
+                }
+            }
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+                return true
+            }
+        }
+        return false
     }
 }

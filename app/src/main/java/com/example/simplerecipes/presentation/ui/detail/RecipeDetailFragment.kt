@@ -34,7 +34,7 @@ class RecipeDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         args.recipeId.let {
-            viewModel.getRecipeDetailsFromNetwork(it.toInt()) // here
+            viewModel.getRecipeDetailsFromNetwork(it.toInt())
         }
         /*  args.recipeId.let {
               viewModel.presentRecipeDetails(it.toInt()) // here
@@ -49,13 +49,11 @@ class RecipeDetailFragment : Fragment() {
         _binding = FragmentDetailRecipeBinding.inflate(inflater, container, false)
         initRecyclers()
         initListeners()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         subscribeObservers()
     }
 

@@ -21,29 +21,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvIngredient"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/small_dimen"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivDot"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="bazilique" />
-
-    <TextView
         android:id="@+id/tvOriginal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/small_dimen"
+        android:layout_marginStart="@dimen/medium_dimen"
+        android:layout_marginEnd="@dimen/small_dimen"
         android:layout_weight="1"
-        android:gravity="center"
+        android:ellipsize="marquee"
+        android:maxLines="2"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvIngredient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivDot"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="3 tablespoons" />
+        tools:text="Lorem ipsum dolor sit amet consectetur https://ww.co.com adipiscing elit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

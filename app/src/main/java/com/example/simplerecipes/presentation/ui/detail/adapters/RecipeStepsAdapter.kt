@@ -26,7 +26,7 @@ class RecipeStepsAdapter :
     fun submitSteps(newSteps: List<Instruction>) {
         steps = newSteps
         notifyDataSetChanged()
-        Log.d(TAG, "StepAdaper submitData")
+        Log.d(TAG, "Steps Adaper submitData")
     }
 
     class StepsViewHolder(private val binding: StepItemBinding) :

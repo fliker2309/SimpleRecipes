@@ -18,7 +18,4 @@ class FavoritesViewModel @Inject constructor(
 
     val favRecipes: LiveData<List<Recipe>> =
         getFavoritesRecipesUseCase.getFavoriteRecipes().asLiveData()
-
-
-
 }
