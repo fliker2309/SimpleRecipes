@@ -13,11 +13,11 @@ data class DatabaseRecipe(
     @ColumnInfo(name = "created_at")
     val createdAt: Long,
     @ColumnInfo(name = "source_name")
-    val sourceName: String?,
+    val sourceName: String = "",
     @ColumnInfo(name = "source_url")
-    val sourceUrl: String?,
+    val sourceUrl: String = "",
     @ColumnInfo(name = "image_url")
     val imageUrl: String,
-    val readyInMinutes: Int?,
-    val summary: String?
+    val readyInMinutes: Int = 0,
+    val summary: String = ""
 )

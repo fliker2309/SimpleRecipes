@@ -1,9 +1,7 @@
 package com.example.simplerecipes.data.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.example.simplerecipes.data.database.dao.RecipeDao
 import com.example.simplerecipes.data.database.dto.DatabaseIngredient
 import com.example.simplerecipes.data.database.dto.DatabaseInstruction
@@ -12,7 +10,7 @@ import com.example.simplerecipes.utils.Constants.DATABASE_NAME
 
 @Database(
     version = 2,
-    exportSchema = false,
+    exportSchema = true, // Включаем экспорт схемы для возможных миграций
     entities = [DatabaseRecipe::class, DatabaseIngredient::class, DatabaseInstruction::class]
 )
 
@@ -21,12 +19,20 @@ abstract class RecipeDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
 
     companion object {
-        fun createDatabase(context: Context) = Room.databaseBuilder(
-            context,
-            RecipeDatabase::class.java,
-            DATABASE_NAME
-        )
-            .fallbackToDestructiveMigration()
-            .build()
+        @Volatile
+        private var INSTANCE: RecipeDatabase? = null
+
+        fun getInstance(context: Context): RecipeDatabase {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: Room.databaseBuilder(
+                    context.applicationContext,
+                    RecipeDatabase::class.java,
+                    DATABASE_NAME
+                )
+                    .fallbackToDestructiveMigration() // Гибкое обновление схемы
+                    .build()
+                    .also { INSTANCE = it }
+            }
+        }
     }
 }

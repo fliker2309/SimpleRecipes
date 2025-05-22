@@ -23,7 +23,7 @@ object AppModule {
     @Provides
     fun provideDatabase(
         @ApplicationContext context: Context
-    ) = RecipeDatabase.createDatabase(context)
+    ) = RecipeDatabase.getInstance(context)
 
     @Singleton
     @Provides

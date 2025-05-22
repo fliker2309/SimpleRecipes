@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.androidtask6"
         minSdk = 23
-        targetSdk = 31
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
