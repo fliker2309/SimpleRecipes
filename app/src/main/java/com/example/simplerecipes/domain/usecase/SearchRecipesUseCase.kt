@@ -5,7 +5,7 @@ import com.example.simplerecipes.domain.repository.RecipeRepository
 import javax.inject.Inject
 
 interface SearchRecipesUseCase {
-    suspend fun searchRecipes(
+    suspend fun execute(
         query: String,
         addRecipeInformation: Boolean,
         number: Int,
@@ -16,7 +16,7 @@ interface SearchRecipesUseCase {
 class SearchRecipesUseCaseImpl @Inject constructor(
     private val repository: RecipeRepository
 ) : SearchRecipesUseCase {
-    override suspend fun searchRecipes(
+    override suspend fun execute(
         query: String,
         addRecipeInformation: Boolean,
         number: Int,

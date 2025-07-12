@@ -11,6 +11,7 @@ import com.example.simplerecipes.utils.Constants.TAG
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.io.IOException
+import java.util.Collections.emptyList
 import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(

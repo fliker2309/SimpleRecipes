@@ -34,7 +34,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     @ExperimentalCoroutinesApi
     private fun getRecipeDetailsFromDb(id: Int) {
-        getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id).mapLatest { recipe ->
+        getFavoriteRecipeByIdUseCase.execute(id).mapLatest { recipe ->
             _recipe.value = recipe
             Log.d("TAG", "сработало чтение из бд")
         }
@@ -47,7 +47,7 @@ class RecipeDetailViewModel @Inject constructor(
     fun getRecipeDetailsFromNetwork(id: Int) {
         viewModelScope.launch {
             _loading.value = true
-            val details = getRecipeDetailsUseCase.getRecipeDetails(id)
+            val details = getRecipeDetailsUseCase.execute(id)
             _recipe.value = details
             _loading.value = false
         }
@@ -71,7 +71,7 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
     fun isFavorite(id: Int): LiveData<Boolean> {
-        return getFavoriteRecipeByIdUseCase.getFavoriteRecipeById(id).map {
+        return getFavoriteRecipeByIdUseCase.execute(id).map {
             isFavorite = it != null
             isFavorite
         }.asLiveData()
@@ -80,7 +80,7 @@ class RecipeDetailViewModel @Inject constructor(
     private fun saveFavoriteRecipe() {
         viewModelScope.launch {
             _recipe.value?.let {
-                saveFavoriteRecipeUseCase.saveFavoriteRecipe(it)
+                saveFavoriteRecipeUseCase.execute(it)
             }
         }
     }
@@ -88,7 +88,7 @@ class RecipeDetailViewModel @Inject constructor(
     private fun deleteFavoriteRecipe() {
         viewModelScope.launch {
             _recipe.value?.let {
-                deleteFavoriteRecipeUseCase.deleteFavoriteRecipe(it)
+                deleteFavoriteRecipeUseCase.execute(it)
             }
         }
     }

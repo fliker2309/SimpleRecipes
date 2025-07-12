@@ -18,7 +18,7 @@ fun Recipe.toDatabaseModel(): DatabaseRecipeInformation {
         summary = summary
     )
 
-    val dbIngredients = ingredients?.map { ingredient ->
+    val dbIngredients = ingredients.map { ingredient ->
         DatabaseIngredient(
             id = ingredient.id,
             recipeId = id,
@@ -29,7 +29,7 @@ fun Recipe.toDatabaseModel(): DatabaseRecipeInformation {
         )
     }
 
-    val dbInstructions = instructions?.map { instruction ->
+    val dbInstructions = instructions.map { instruction ->
         DatabaseInstruction(
             recipeId = id,
             number = instruction.number,
@@ -39,7 +39,7 @@ fun Recipe.toDatabaseModel(): DatabaseRecipeInformation {
 
     return DatabaseRecipeInformation(
         recipe = dbRecipe,
-        ingredients = dbIngredients ?: listOf(),
-        instructions = dbInstructions ?: listOf(),
+        ingredients = dbIngredients,
+        instructions = dbInstructions
     )
 }

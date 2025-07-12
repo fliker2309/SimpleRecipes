@@ -6,36 +6,41 @@ import com.example.simplerecipes.data.network.dto.NetworkStep
 import com.example.simplerecipes.domain.entity.Ingredient
 import com.example.simplerecipes.domain.entity.Instruction
 import com.example.simplerecipes.domain.entity.Recipe
+import java.util.Collections.emptyList
+
+private const val DEFAULT_IMAGE_URL = "https://spoonacular.com/recipeImages/654959-312x231.jpg"
 
 fun NetworkRecipe.toDomainModel(): Recipe {
-    var instructions = listOf<Instruction>()
-    var ingredients = listOf<Ingredient>()
+    val domainInstructions: List<Instruction> = instructions
+        ?.flatMap { it.steps.orEmpty() }
+        ?.map { it.toDomainModel() }
+        ?: emptyList()
 
-    if (this.instructions?.isNotEmpty() == true) {
-        instructions = this.instructions.first().steps.map {
-            it.toDomainModel()
-        }
-    }
-    if (this.ingredients?.isNotEmpty() == true) {
-        ingredients = this.ingredients.map {
-            it.toDomainModel()
-        }
-    }
+    val domainIngredients: List<Ingredient> = ingredients
+        ?.map { it.toDomainModel() }
+        ?: emptyList()
 
     return Recipe(
         id = id,
         title = title,
-        sourceName = sourceName,
-        sourceUrl = sourceUrl,
-        imageUrl = imageUrl ?: "https://spoonacular.com/recipeImages/654959-312x231.jpg",
+        sourceName = sourceName ?: "",
+        sourceUrl = sourceUrl ?: "",
+        imageUrl = imageUrl ?: DEFAULT_IMAGE_URL,
         readyInMinutes = readyInMinutes,
-        summary = summary,
-        instructions = instructions,
-        ingredients = ingredients
+        summary = summary ?: "",
+        instructions = domainInstructions,
+        ingredients = domainIngredients
     )
 }
 
-fun NetworkStep.toDomainModel() = Instruction(number = number, step = step)
+fun NetworkStep.toDomainModel(): Instruction =
+    Instruction(number = number, step = step)
 
-fun NetworkIngredient.toDomainModel() =
-    Ingredient(id = id, name = name, original = original, amount = amount, unit = unit)
+fun NetworkIngredient.toDomainModel(): Ingredient =
+    Ingredient(
+        id = id,
+        name = name ?: "",
+        original = original ?: "",
+        amount = amount,
+        unit = unit ?: ""
+    )
