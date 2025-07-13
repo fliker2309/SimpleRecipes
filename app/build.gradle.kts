@@ -10,7 +10,7 @@ plugins {
 
 android {
     compileSdk = 35
-
+    namespace = "com.example.simplerecipes"
     defaultConfig {
         applicationId = "com.example.androidtask6"
         minSdk = 23
