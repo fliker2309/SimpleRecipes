@@ -118,12 +118,12 @@ class RecipeDetailFragment : Fragment() {
                     error(R.drawable.ic_error)
                 }
                 tvRecipeName.text = recipe.title
-                recipe.ingredients?.let {
+                recipe.ingredients.let {
                     (rvIngredients.adapter as RecipeIngredientsAdapter).submitIngredients(
                         it
                     )
                 }
-                recipe.instructions?.let {
+                recipe.instructions.let {
                     (rvSteps.adapter as RecipeStepsAdapter).submitSteps(
                         it
                     )

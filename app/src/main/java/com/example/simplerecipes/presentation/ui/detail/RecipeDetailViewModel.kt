@@ -32,10 +32,13 @@ class RecipeDetailViewModel @Inject constructor(
     val loading: LiveData<Boolean>
         get() = _loading
 
+            /**
+            убрать !! не забыть!
+             */
     @ExperimentalCoroutinesApi
     private fun getRecipeDetailsFromDb(id: Int) {
         getFavoriteRecipeByIdUseCase.execute(id).mapLatest { recipe ->
-            _recipe.value = recipe
+            _recipe.value = recipe!!
             Log.d("TAG", "сработало чтение из бд")
         }
 

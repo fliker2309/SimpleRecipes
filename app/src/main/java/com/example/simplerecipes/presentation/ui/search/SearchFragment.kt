@@ -83,8 +83,7 @@ class SearchFragment : Fragment(), RecipeEventDispatcher {
     private fun requestSearch(shouldRetry: Boolean = false) {
         val text = binding.txtRecipeSearch.text.toString()
         if (text.trim().isNotEmpty() || shouldRetry) {
-            viewModel.query = text
-            pagingAdapter.refresh()
+            viewModel.search(text)
         }
     }
 

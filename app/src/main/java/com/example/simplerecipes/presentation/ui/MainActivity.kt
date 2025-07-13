@@ -42,9 +42,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(newBase)
-        setUpUiMode(sharedPreferences)
+        newBase?.let {
+            setUpUiMode(PreferenceManager.getDefaultSharedPreferences(it))
+        }
     }
+
 
     private fun setUpUiMode(sharedPreferences: SharedPreferences) {
         if (sharedPreferences.contains(ENABLE_DARK_THEME)) {

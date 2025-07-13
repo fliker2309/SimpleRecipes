@@ -42,6 +42,7 @@ class FavoritesViewHolder(
             cardRecipe.setOnClickListener {
                 eventDispatcher.onRecipePressed(recipe, recipeContainer)
             }
+            
         }
     }
 

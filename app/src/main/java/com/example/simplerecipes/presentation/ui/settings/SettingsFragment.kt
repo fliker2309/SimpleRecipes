@@ -29,8 +29,8 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
     private fun getUiMode() =
         requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
 
-    override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
-        when (preference?.key) {
+    override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
+        when (preference.key) {
             ENABLE_DARK_THEME -> enableDarkTheme(newValue as Boolean)
         }
         return true
