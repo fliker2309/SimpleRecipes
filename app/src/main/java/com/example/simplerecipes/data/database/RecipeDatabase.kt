@@ -10,7 +10,7 @@ import com.example.simplerecipes.utils.Constants.DATABASE_NAME
 
 @Database(
     version = 2,
-    exportSchema = true, // Включаем экспорт схемы для возможных миграций
+    exportSchema = false,
     entities = [DatabaseRecipe::class, DatabaseIngredient::class, DatabaseInstruction::class]
 )
 

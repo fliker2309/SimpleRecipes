@@ -7,6 +7,7 @@ import com.example.simplerecipes.domain.usecase.DeleteFavoriteRecipeUseCase
 import com.example.simplerecipes.domain.usecase.GetFavoriteRecipeByIdUseCase
 import com.example.simplerecipes.domain.usecase.GetRecipeDetailsUseCase
 import com.example.simplerecipes.domain.usecase.SaveFavoriteRecipeUseCase
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.map
@@ -50,20 +51,30 @@ class RecipeDetailViewModel @Inject constructor(
     fun getRecipeDetailsFromNetwork(id: Int) {
         viewModelScope.launch {
             _loading.value = true
-            val details = getRecipeDetailsUseCase.execute(id)
-            _recipe.value = details
+            val result = getRecipeDetailsUseCase.execute(id)
+            result.onSuccess { recipe ->
+                _recipe.value = recipe
+            }.onFailure { error->
+                Log.e("RecipeDetailViewModel", "Ошибка при получении рецепта: ${error.message}")
+            }
             _loading.value = false
         }
     }
 
     @ExperimentalCoroutinesApi
     fun presentRecipeDetails(id: Int) {
-        if (isFavorite) {
-            getRecipeDetailsFromDb(id)
-        } else {
-            getRecipeDetailsFromNetwork(id)
+        viewModelScope.launch {
+            getFavoriteRecipeByIdUseCase.execute(id).collect { recipeInDb ->
+                if (recipeInDb != null) {
+                    _recipe.value = recipeInDb!!
+                } else {
+                    getRecipeDetailsFromNetwork(id)
+                }
+            }
         }
     }
+
+
 
     fun saveOrDeleteRecipe() {
         if (isFavorite) {

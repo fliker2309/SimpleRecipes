@@ -5,12 +5,16 @@ import com.example.simplerecipes.domain.repository.RecipeRepository
 import javax.inject.Inject
 
 interface GetRecipeDetailsUseCase {
-    suspend fun execute(recipeId: Int): Recipe
+    suspend fun execute(recipeId: Int): Result<Recipe>
 }
 
 class GetRecipeDetailsUseCaseImpl @Inject constructor(
     private val repository: RecipeRepository
 ) : GetRecipeDetailsUseCase {
-    override suspend fun execute(recipeId: Int): Recipe =
-        repository.getRecipeDetails(recipeId)
+    override suspend fun execute(recipeId: Int): Result<Recipe> = try {
+        val recipe = repository.getRecipeDetails(recipeId)
+        Result.success(recipe)
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
 }

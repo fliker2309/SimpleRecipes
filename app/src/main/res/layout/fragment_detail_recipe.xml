@@ -115,6 +115,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvIngredients"
+                android:nestedScrollingEnabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_dimen"
@@ -122,6 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvIngredient"
+                android:overScrollMode="never"
                 tools:listItem="@layout/ingredient_item" />
 
             <TextView
@@ -146,6 +148,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvStep"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
                 tools:listItem="@layout/step_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

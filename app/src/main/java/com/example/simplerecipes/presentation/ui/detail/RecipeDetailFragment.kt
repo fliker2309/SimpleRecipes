@@ -19,6 +19,7 @@ import com.example.simplerecipes.domain.entity.Recipe
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeIngredientsAdapter
 import com.example.simplerecipes.presentation.ui.detail.adapters.RecipeStepsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,15 +31,16 @@ class RecipeDetailFragment : Fragment() {
     private val binding
         get() = requireNotNull(_binding)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        args.recipeId.let {
+        /*args.recipeId.let {
             viewModel.getRecipeDetailsFromNetwork(it.toInt())
-        }
-        /*  args.recipeId.let {
+        }*/
+          args.recipeId.let {
               viewModel.presentRecipeDetails(it.toInt()) // here
-          }*/
+          }
     }
 
     override fun onCreateView(
